@@ -1,0 +1,118 @@
+.btn-label {
+  position: relative;
+  padding-left: 44px;
+
+  .label-icon {
+    position: absolute;
+    width: 32px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+.btn-login-discord,
+.btn-login-discord:focus,
+.btn-login-discord:active,
+.btn-login-discord:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #891d34;
+  border-color: #891d34;
+  padding: 5px 30px;
+  border-radius: 6px;
+  transition: 0.5s ease;
+  font-size: 13px;
+
+  i {
+    margin-left: 8px;
+    /* transform: translateY(2px); */
+  }
+
+  &:hover {
+    color: #fff;
+    background: #ba2746;
+    border-color: #ba2746;
+  }
+}
+
+.btn-success {
+  color: #fff;
+  background: #34c38f;
+  border-color: #34c38f;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #2ca67a;
+    border-color: #2a9c72;
+  }
+}
+
+.btn-signin,
+.btn-signin:focus,
+.btn-signin:active,
+.btn-signin:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #00A9EA;
+  border-color: #00A9EA;
+  padding: 10px 30px;
+  border-radius: 0.25rem;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #1ec1ff;
+    border-color: #1ec1ff;
+  }
+}
+
+.btn-go,
+.btn-go:focus,
+.btn-go:active,
+.btn-go:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #00A9EA;
+  border-color: #00A9EA;
+  padding: 10px 30px;
+  border-radius: 0.25rem;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #1ec1ff;
+    border-color: #1ec1ff;
+  }
+}
+
+.btn-setup,
+.btn-setup:focus,
+.btn-setup:active,
+.btn-setup:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #ffffff1a;
+  border-color: #ffffff1a;
+  padding: 10px 30px;
+  border-radius: 0.25rem;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #ffffff33;
+    border-color: #ffffff33;
+  }
+}

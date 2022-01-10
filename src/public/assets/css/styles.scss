@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+@import "partials/config";
+@import "partials/colors";
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: #222736;
+  font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1 px solid rgb(0, 0, 0);
+  background: #556ee6;
+}
+
+img,
+svg {
+  display: block;
+  width: 100%;
+}
+
+button:hover,
+button:focus,
+button:active,
+button:active:focus:not(:disabled):not(.disabled) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+@import "partials/menu";
+@import "partials/layout";
+@import "partials/items";
+@import "partials/cards";
+@import "partials/markdown";
+@import "partials/modal";
+@import "partials/buttons";
+@import "partials/badges";

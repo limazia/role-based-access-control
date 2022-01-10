@@ -1,0 +1,10 @@
+{
+  "web": {
+    "LOGIN": "Sign In",
+    "MEMBER_TEAM": "Team Members",
+    "SERVERS": "Servers",
+    "MEMBERS": "Members"
+  },
+  "TOKEN_NOT_PROVIDED": "Unauthorized user, token not provided.",
+  "TOKEN_INVALID": "Invalid token..."
+}

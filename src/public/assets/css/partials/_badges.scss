@@ -1,0 +1,40 @@
+.badge {
+  display: inline-block;
+  padding: 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: $border-radius-in-rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out;
+  color: #fff;
+}
+
+.badge-ceo {
+  background-color: #B23CFD;
+}
+
+.badge-fullstack {
+  background-color: #FFA900;
+}
+
+.badge-frontend {
+  background-color: #F93154;
+}
+
+.badge-backend {
+  background-color: #00B74A;
+}
+
+.badge-support {
+  background-color: #1266F1;
+}
+
+/*
+#39C0ED
+#FBFBFB
+#262626
+*/
