@@ -1,0 +1,146 @@
+<%- include('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<%- include('components/changelog.ejs') %>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-8">
+        <% if(bots.length > 0){ %>
+        <% for (item of bots) { %>
+        <div class="row <%= bots.length > 1 && 'pb-5' %>">
+          <div class="col-md-12">
+            <div class="card card-bot">
+              <div class="card-body">
+                <div class="media">
+                  <img src="<%= item.bot_avatar || 'sim' %>" class="avatar img-fluid">
+                  <div class="media-body overflow-hidden">
+                    <h5><%= item.bot_name %></h5>
+                    <p><%= item.bot_description %></p>
+                  </div>
+                </div>
+                <h5 class="mt-4">Últimas atualizações</h5>
+                <% if(item.bot_changelog.length > 0){ %>
+                <div class="markdown-box mt-4">
+                  <%- item.bot_changelog %>
+                </div>
+                <% } else { %>
+                  <span class="not_found_changelog">Nenhuma atualização foi lançada</span>
+                <% } %>
+                <div class="row mt-5 task-dates">
+                  <div class="col-sm-4 col-6">
+                    <div class="d-flex flex-row">
+                      <i class="fas fa-calendar-alt text-primary"></i>
+                      <div class="ms-2">
+                        <h5>Início do projeto</h5>
+                        <p><%= item.createdAt %></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-6">
+                    <div class="d-flex flex-row">
+                      <i class="fas fa-calendar-check text-primary"></i>
+                      <div class="ms-2">
+                        <h5>Última atualização</h5>
+                        <p><%= item.updateAt %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+        <% } else { %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-bot">
+              <div class="card-body">        
+                <h5 class="not_found_bots text-center">Nenhum bot foi encontrado</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-team">
+              <div class="card-body">
+                <h5 class="card-title">Membros da equipe</h5>
+                <ul class="list-group">
+                  <% if(teams.length > 0){ %>
+                  <% for (item of teams) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <a href="/profile/<%= item.username %>.<%= item.discriminator %>">
+                        <img src="https://cdn.discordapp.com/avatars/<%= item.id %>/<%= item.avatar %>.<%= item.premium_type == 1 ? 'gif' : 'png' %>" class="avatar img-fluid">
+                        <%= item.username %><small>#<%= item.discriminator %></small>
+                      </a>
+                      <div>
+                        <span class="badge badge-<%= item.user_role.toLowerCase().replace(/ /g, "") %>">
+                          <%= item.user_role %>
+                        </span>
+                      </div>
+                    </li>
+                  <% } %>
+                  <% } else { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span class="not_found_team">Nenhum membro da equipe foi encontrado</span>
+                    </li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <div class="card card-stats">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title">Servidores</h5>
+                    <span class="number">350,897</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fab fa-discord"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">Desde a semana passada</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <div class="card card-stats">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title">Membros</h5>
+                    <span class="number">142,332</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-user-plus"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">Desde o último mês</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footerbar.ejs') %>
+<%- include('partials/footer.ejs') %>

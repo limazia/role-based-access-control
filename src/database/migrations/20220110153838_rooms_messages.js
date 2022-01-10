@@ -1,13 +1,14 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("team", (table) => {
+  return knex.schema.createTable("rooms_messages", (table) => {
     table
-      .string("user_id")
+      .string("id_room")
       .notNullable()
-      .references("id")
-      .inTable("users")
+      .references("room_id")
+      .inTable("rooms")
       .onDelete("CASCADE")
       .primary();
-    table.string("user_role").notNullable();
+    table.string("room_message").notNullable();
+    table.string("room_author").notNullable();
 
     table.timestamp("updateAt").defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));
@@ -15,5 +16,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("team");
+  return knex.schema.dropTable("rooms_messages");
 };

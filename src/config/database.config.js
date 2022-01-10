@@ -1,4 +1,4 @@
-const { env } = require("./../helpers/core.helper");
+const { env } = require("./../helpers/utils.helper");
 
 module.exports = {
   development: {

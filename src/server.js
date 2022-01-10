@@ -9,9 +9,8 @@ const morgan = require("morgan");
 const flash = require('connect-flash');
 
 const routes = require("./routes");
-const port = require("./config/port");
-const locals = require("./config/locals");
 const { handleError } = require("./helpers/error.helper");
+const { AppConfig } = require("./config");
 
 const app = express();
 
@@ -51,8 +50,8 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
-app.locals = locals;
+app.locals = AppConfig.locals;
 
-app.listen(port, () => {
+app.listen(AppConfig.port, () => {
   console.log(`Server running in ${process.env.APP_URL}:${process.env.APP_PORT}`);
 });

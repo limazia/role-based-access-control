@@ -7,14 +7,7 @@ exports.up = function (knex) {
       .inTable("users")
       .onDelete("CASCADE")
       .primary();
-    table.string("public_flags");
-    table.string("flags");
-    table.string("banner");
-    table.string("banner_color");
-    table.string("accent_color");
-    table.string("locale");
-    table.string("mfa_enabled");
-    table.integer("premium_type").notNullable();
+    table.string("permissions").notNullable();
 
     table.timestamp("updateAt").defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));

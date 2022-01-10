@@ -45,11 +45,16 @@ button:active:focus:not(:disabled):not(.disabled) {
   outline: 0 !important;
 }
 
-@import "partials/menu";
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn:active:focus:not(:disabled):not(.disabled) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
 @import "partials/layout";
-@import "partials/items";
+@import "partials/menu";
 @import "partials/cards";
-@import "partials/markdown";
-@import "partials/modal";
 @import "partials/buttons";
 @import "partials/badges";

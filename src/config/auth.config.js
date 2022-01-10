@@ -1,4 +1,4 @@
 module.exports = {
-  secret: process.env.APP_KEY,
+  secret: env("APP_KEY"),
   expiresIn: '7d',
 };
