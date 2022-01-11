@@ -3,33 +3,41 @@
     <div class="row h-100 clearmp">
       <div class="col-md-3 clearmp">
         <div class="card card-profile">
-          <div class="card-body">
-            <h5 class="card-title">
-              <img src="assets/images/logo-icon.png" class="img-fluid mr-2" />
+          <div class="card-header">
+            <img src="assets/images/logo-icon.png" class="img-fluid mr-1" />
+            <h3 class="logo-title">
               <%= PAGE_TITLE %>
-            </h5>
-            <div class="rooms mt-5">
+            </h3>
+          </div>
+          <div class="card-body mt-4">
+            <div class="rooms">
               <h3>Salas disponíveis</h3>
               <div class="list-group mt-3">
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
                   <div class="d-flex flex-row align-items-center">
-                    <div class="invite-user-photo">
+                    <div class="room-photo">
                       <img src="assets/images/room.png">
                     </div>
-                    <div class="ms-2 invite-user-details">
-                      <h6 class="mb-0 waiting">Sala de Teste</h6>
-                      <small>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</small>
+                    <div class="ms-2">
+                      <h6 class="room-title">
+                        Sala de Teste
+                        <span class="room-badge">
+                          <i class="fad fa-lock private" data-toggle="tooltip" data-placement="right"
+                            title="Sala privada"></i>
+                        </span>
+                      </h6>
+                      <small class="room-name">#teste</small>
                     </div>
                   </div>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex flex-row align-items-center">
-                    <div class="invite-user-photo">
+                    <div class="room-photo">
                       <img src="assets/images/room.png">
                     </div>
-                    <div class="ms-2 invite-user-details">
-                      <h6 class="mb-0 waiting">Sala de Teste</h6>
-                      <small>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</small>
+                    <div class="ms-2">
+                      <h6 class="room-title">Call of Duty - Warzone</h6>
+                      <small class="room-name">#warzone</small>
                     </div>
                   </div>
                 </a>
@@ -39,15 +47,15 @@
           <div class="card-footer">
             <div class="d-flex flex-row align-items-center">
               <div class="invite-user-photo">
-                <img src="assets/images/avatar1.jpg">
+                <img src="assets/images/avatar1.jpg" alt="Acacio">
               </div>
-              <div class="ms-2 invite-user-details">
-                <h6 class="mb-0 waiting">Acacio de Lima</h6>
+              <div class="ms-2">
+                <h6 class="mb-0">Acacio de Lima</h6>
                 <small class="text-muted">Administrador</small>
               </div>
             </div>
             <div class="user-options">
-               <span class="text-danger">Sair</span>
+              <span class="text-danger">Sair</span>
             </div>
           </div>
         </div>
@@ -55,28 +63,80 @@
       <div class="col-md-9 clearmp">
         <div class="card card-chat">
           <div class="card-header">
-            <div class="d-flex flex-row align-items-center">
-              <div class="invite-user-photo">
-                <img src="assets/images/room.png" class="rounded">
+            <div class="chat-info">
+              <div class="room-photo">
+                <img src="assets/images/room.png">
               </div>
-              <div class="ms-2 invite-user-details">
-                <h6 class="mb-0 waiting">Sala de Teste</h6>
-                <small>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</small>
+              <div class="ms-2">
+                <h6 class="room-title">Sala de Teste</h6>
+                <small class="room-name">#teste</small>
               </div>
             </div>
             <div class="options">
-              <i class="fas fa-phone-alt"></i>
-              <i class="fas fa-info-circle"></i>
+              <i class="fal fa-flag-alt"></i>
+              <i class="fal fa-info-circle"></i>
+              <div class="dropdown show dropleft">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+                  <i class="fal fa-ellipsis-v"></i>
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#"><i class="fas fa-user-plus mr-1"></i> Convidar pessoas</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-user-shield mr-1"></i> Adicionar administrador</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt mr-1"></i> Editar nome</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-lock-alt mr-1"></i> Alterar senha</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-trash-alt mr-1"></i> Excluir sala</a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="card-body">
-            oi
+            <div class="text-center">
+              <small class="text-muted">11:00 AM</small>
+            </div>
+            <div class="answer left">
+              <div class="avatar">
+                <img src="assets/images/avatar2.jpg" alt="Bianca">
+              </div>
+              <div class="name">Bianca Mackenzie</div>
+              <div class="text">
+                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing
+                elit Lorem ipsum dolor amet, consectetur adiping elit
+              </div>
+              <small class="time">11:38 AM</small>
+            </div>
+            <div class="answer right">
+              <div class="avatar">
+                <img src="assets/images/avatar1.jpg" alt="Acacio">
+                <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
+                  <i class="fas fa-user-crown"></i>
+                </div>
+              </div>
+              <div class="text">
+                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing
+                elit Lorem ipsum dolor amet, consectetur adiping elit
+              </div>
+              <small class="time">11:38 AM</small>
+            </div>
+            <div class="answer left">
+              <div class="avatar">
+                <img src="assets/images/avatar3.jpg" alt="Julia">
+                <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
+                  <i class="fas fa-user-crown"></i>
+                </div>
+              </div>
+              <div class="name">Julia Oliveira</div>
+              <div class="text">
+                Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor amet, consectetur adipisicing
+                elit Lorem ipsum dolor amet, consectetur adiping elit
+              </div>
+              <small class="time">11:40 AM</small>
+            </div>
           </div>
           <div class="card-footer">
             <button class="btn btn-plus"><i class="far fa-plus"></i></button>
             <button class="btn btn-send-image"><i class="far fa-images"></i></button>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enviar mensagem para Sala de teste">
+            <div class="input-group input-message">
+              <input type="text" class="form-control" placeholder="Enviar mensagem para #teste">
               <div class="input-group-append">
                 <span class="input-group-text"><i class="fad fa-paper-plane" style="color: #cccccc;"></i></span>
               </div>
@@ -86,4 +146,4 @@
       </div>
     </div>
   </div>
-<%- include('partials/footer.ejs') %>
+  <%- include('partials/footer.ejs') %>

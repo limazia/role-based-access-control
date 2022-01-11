@@ -20,16 +20,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff;
+  background: transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 3px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 1px solid rgb(0, 0, 0);
-  background: #556ee6;
+  background: #9466ff;
 }
 
 img,
@@ -57,5 +57,4 @@ button:active:focus:not(:disabled):not(.disabled) {
 @import "partials/layout";
 @import "partials/menu";
 @import "partials/cards";
-@import "partials/chat";
 @import "partials/buttons";
