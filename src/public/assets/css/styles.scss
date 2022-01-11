@@ -5,21 +5,22 @@
   box-sizing: border-box;
 }
 
-@import "partials/config";
 @import "partials/colors";
 
 html {
   position: relative;
   min-height: 100%;
+  /* height: 100vh; */
+  /* height: 100%; */
 }
 
 body {
-  background: #222736;
+  background: #fff;
   font-family: "Poppins", sans-serif;
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #fff;
 }
 
 ::-webkit-scrollbar {
@@ -27,7 +28,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 1 px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   background: #556ee6;
 }
 
@@ -56,5 +57,5 @@ button:active:focus:not(:disabled):not(.disabled) {
 @import "partials/layout";
 @import "partials/menu";
 @import "partials/cards";
+@import "partials/chat";
 @import "partials/buttons";
-@import "partials/badges";

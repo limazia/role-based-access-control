@@ -29,7 +29,7 @@ const sorted = (data, dir) => {
 
 const range = (begin, end, interval = 1) => {
   for (let i = begin; i < end; i += interval) {
-    yield i;
+    return i;
   }
 }
 

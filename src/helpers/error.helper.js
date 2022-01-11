@@ -1,3 +1,5 @@
+const { env } = require("./utils.helper");
+
 class ErrorHandler extends Error {
   constructor(statusCode, message) {
     super();
@@ -10,25 +12,18 @@ const handleError = (err, response) => {
   const { statusCode, message } = err;
   const code = statusCode >= 100 && statusCode < 600 ? err.code : 500;
 
-  /*
-  if (process.env.APP_ENV === "development") {
+  if (env("APP_ENV", "development") === "development") {
     response.status(code).json({
       status: "error",
       statusCode: code,
       message,
     });
   } else { 
-    return response.status(code).render("Default", {
+    return response.status(code).render("InternalServerError", {
       statusCode: code,
       message,
     });
   }
-  */
-  
-  return response.status(code).render("Default", {
-    statusCode: code,
-    message,
-  });
 };
 
 module.exports = {

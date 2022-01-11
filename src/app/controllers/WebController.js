@@ -7,10 +7,10 @@ class WebController {
     }
   }
 
-  async renderHome(request, response, next) {
+  async renderLogin(request, response, next) {
     try {
-      return response.status(200).render("Settings", {
-        title: "Configurações",
+      return response.status(200).render("Login", {
+        title: "Iniciar sessão",
         session: request.session.user || null,
       });
     } catch (error) {
@@ -18,10 +18,21 @@ class WebController {
     }
   }
 
-  async renderSettings(request, response, next) {
+  async renderRegister(request, response, next) {
     try {
-      return response.status(200).render("Settings", {
-        title: "Configurações",
+      return response.status(200).render("Register", {
+        title: "Criar conta",
+        session: request.session.user || null,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async renderHome(request, response, next) {
+    try {
+      return response.status(200).render("Home", {
+        title: "Início",
         session: request.session.user || null,
       });
     } catch (error) {

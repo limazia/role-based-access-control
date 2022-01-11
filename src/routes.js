@@ -12,16 +12,17 @@ const Authentication = require("./app/middlewares/Authentication");
 
 // Main
 routes.get('/', WebController.renderLanding);
+routes.get('/login', WebController.renderLogin);
+routes.get('/register', WebController.renderRegister);
 //routes.get('*', WebController.renderPageNotFound);
 
 // Auth
-routes.get('/login', AuthController.userLogin);
-routes.get('/register', AuthController.userRegister);
-routes.get('/logout', AuthController.userLogout);
+routes.post('/login', AuthController.userLogin);
+routes.post('/register', AuthController.userRegister);
 
 // Authenticated
-routes.get('/home', Authentication.session, WebController.renderHome);
-routes.get('/settings', Authentication.session, WebController.renderSettings);
+routes.get('/home', WebController.renderHome);
+routes.get('/logout', Authentication.session, AuthController.userLogout);
 
 // API
 routes.get('/api/id', FakerController.generateUID);

@@ -17,6 +17,8 @@ class AuthController {
 
   async userLogout(request, response, next) {
     try {
+      request.session.user = null;
+      
       return response.redirect("/");
     } catch (err) {
       next(err);

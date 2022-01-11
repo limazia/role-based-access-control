@@ -1,3 +1,4 @@
+const path = require("path");
 const { env } = require("./../helpers/utils.helper");
 
 module.exports = {

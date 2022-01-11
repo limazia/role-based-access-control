@@ -1,366 +1,147 @@
 .card {
   word-wrap: break-word;
-  background: #2a3042;
+  background: #fff;
   background-clip: border-box;
-  border: 0 solid #32394e;
+  border: none;
 }
 
 .card,
 .card-body {
   box-shadow: none;
-  border-radius: 6px;
+  border-radius: 0px;
   border: none;
 }
 
-.card-bot {
-  .card-body {
-    .media {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: start;
-      -ms-flex-align: start;
-      align-items: flex-start;
-
-      .avatar {
-        max-width: 100%;
-        width: 48px;
-        margin-right: 15px;
-        border-radius: 0.25rem;
-      }
-
-      .media-body {
-        -webkit-box-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-
-        p {
-          color: #c3cbe4;
-        }
-      }
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: #fff;
-      margin-bottom: 0 !important;
-    }
-
-    .not_found_changelog,
-    .not_found_bots {
-      color: #c3cbe4;
-    }
-
-    .task-dates {
-      h5 {
-        display: flex;
-        align-items: center;
-        color: #fff;
-      }
-
-      i {
-        margin-top: 3px;
-        margin-right: 10px;
-      }
-
-      p {
-        color: #c3cbe4;
-        margin-bottom: 0;
-      }
-    }
-  }
+.card-profile,
+.card-chat {
+  height: 100vh;
 }
 
-.card-team {
-  .card-title {
-    color: #fff;
-  }
+.card-profile {
+  border-right: 1px solid rgba(115, 115, 115, 0.3);
 
   .card-body {
+    .card-title {
+      display: flex;
+      align-items: center;
+      font-size: 23px;
+      font-weight: 700;
+      color: #000;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:focus:not(:disabled):not(.disabled) {
+        color: #000;
+      }
+
+      img {
+        display: inline;
+        max-width: 100%;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
     .list-group {
-      background: transparent;
-      color: #fff;
+      border-radius: 20px;
 
       .list-group-item {
-        background: transparent;
+        color: #000;
+        margin-bottom: 2rem;
         border: none;
-        padding: 0.75rem 0;
-        border-bottom: 0.4px solid #3c445e;
 
-        a {
-          color: #fff;
-
-          &:hover,
-          &:focus,
-          &:active,
-          &:active:focus:not(:disabled):not(.disabled) {
-            text-decoration: none;
-          }
+        img {
+          width: 64px;
+          height: 64px;
+          object-fit: cover;
+          border-radius: 25%;
+          margin-right: 20px;
         }
 
         &:first-child {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
+          border-radius: inherit;
         }
 
         &:last-child {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
-          border: none;
-          padding-bottom: 0;
+          border-radius: inherit;
         }
       }
 
-      .avatar {
-        display: inline-flex;
-        align-items: center;
-        max-width: 100%;
-        width: 32px;
-        margin-right: 8px;
-        border-radius: 50%;
+      .list-group-item.active {
+        background-color: #f1fafa;
+        border-color: #f1fafa;
       }
 
-      .not_found_team {
-        color: #c3cbe4;
-      }
-    }
-  }
-}
-
-.card-stats {
-  .card-title {
-    color: #fff;
-    margin-bottom: 0;
-  }
-
-  .card-body {
-    .number {
-      font-size: 2.2em;
-      font-weight: bold;
-      margin-bottom: 0;
-      color: #c3cbe4;
-    }
-
-    .icon {
-      width: 3rem;
-      height: 3rem;
-
-      i {
-        font-size: 2.25rem;
-      }
-    }
-
-    .icon-shape {
-      display: inline-flex;
-      padding: 12px;
-      text-align: center;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-
-      i {
-        font-size: 1.25rem;
-      }
-    }
-  }
-}
-
-.card-store {
-  text-align: center;
-
-  .card-title {
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 0;
-  }
-
-  .card-body {
-    .product-img {
-      img {
-        width: 140px;
-        height: 140px;
-      }
-    }
-
-    .title {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    .price {
-      color: #fff;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .product-size {
-      h4 {
-        font-size: 11px;
-        padding: 0 2px;
-        margin-top: 10px;
-        padding-bottom: 0;
-        text-transform: uppercase;
-        color: #fff;
+      .list-group-item.active.list-group-item-action {
+        &:focus,
+        &:hover {
+          background-color: #f1fafa;
+          border-color: #f1fafa;
+        }
       }
 
-      &:before,
-      &:after {
-        content: "";
-        display: block;
-        clear: both;
-      }
-    }
+      .list-group-item-action {
+        transition: ease 0.5s;
 
-    .ul-size {
-      margin-bottom: 10px;
-      padding: 0;
-      display: flex;
-
-      span {
-        margin: auto;
-
-        a {
-          display: inline-block;
+        &:focus,
+        &:hover {
+          z-index: 1;
+          color: #495057;
           text-decoration: none;
-          font-size: 11px;
-          width: 6vw;
-          height: 22px;
-          text-align: center;
-          line-height: 23px;
-          color: #fff;
-          background: rgba(85, 110, 230, 0.25);
-        }
-
-        .active {
-          background: #556ee6;
-          color: #fff;
+          background-color: #f8f9fa;
         }
       }
     }
   }
-}
 
-.card-support {
-  transition: ease 0.5s;
-  border: 1px solid transparent;
-
-  .blocks-item-link {
-    display: inline-flex;
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 
-    .first-letter {
-      margin-right: 16px;
-      width: 64px;
-      height: 64px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 32px;
-      font-weight: bold;
-      color: #556ee6;
-      background-color: #121214;
-      border-radius: 5px;
-      transition: ease 0.5s;
-    }
+    max-height: 100%;
+    height: 68px;
+    background: #fff;
+    border-top: 1px solid rgba(115, 115, 115, 0.3);
 
-    .button-name {
-      font-size: 25px;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    &:hover,
-    &:focus,
-    &:active,
-    &:active:focus:not(:disabled):not(.disabled) {
-      text-decoration: none;
+    img {
+      display: inline;
+      max-width: 100%;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 50%;
+      border: 1px solid #000;
     }
   }
-
-  &:hover .first-letter {
-    color: #e1e1e6;
-    background-color: #556ee6;
-  }
-
-  &:hover {
-    background-color: #1b1f2a;
-    border-radius: 5px;
-  }
-
-  /* &:active { border: 1px solid #556ee6; } */
 }
 
-.card-guild {
-  background: transparent;
+.card-chat {
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-height: 100%;
+    height: 150px;
+    background: #fff;
+    border-bottom: 1px solid rgba(115, 115, 115, 0.3);
+  }
 
   .card-body {
-    position: relative;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    border-radius: 6px;
-    background: #1f2129;
-    height: 152px;
-    width: 100%;
-    overflow: hidden;
-    .card-body-banner {
-      position: absolute;
-      inset: 0px;
-      z-index: 1;
-      transform: scale(1.4);
-      filter: blur(10px);
-      opacity: 0.3;
-    }
-
-    .guild-avatar {
-      position: relative;
-      z-index: 2;
-      border: 2px solid rgb(242, 244, 251);
-      filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 32px 72px);
-
-      width: 80px;
-      height: 80px;
-      border-radius: 40px;
-      flex-shrink: 0;
-    }
+    overflow-y: auto;
+    background: #f6fafa;
   }
 
-  .card-guild-options {
+  .card-footer {
     display: flex;
-    -webkit-box-pack: justify;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 16px;
+    align-items: center;
 
-    .guild-infos {
-      margin-right: 12px;
-
-      .guild-name {
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 24px;
-        color: #f2f4fb;
-        margin: 0px 0px 3px;
-        padding: 0px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-
-      .guild-role {
-        color: #868686;
-      }
-    }
+    max-height: 100%;
+    height: 68px;
+    background: #fff;
+    border-top: 1px solid rgba(115, 115, 115, 0.3);
   }
 }

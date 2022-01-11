@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const flash = require('connect-flash');
 
 const routes = require("./routes");
+const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
 const { AppConfig } = require("./config");
 
@@ -20,11 +21,11 @@ app.set("views", [
   __dirname + "/resources/views/errors",
 ]);
 
-if (process.env.APP_DEBUG === true) app.use(morgan(':method :url :status :response-time ms'));
+if (env("APP_DEBUG", false) === true) app.use(morgan(':method :url :status :response-time ms'));
 app.use(cookieParser());
 app.use(
   session({
-    secret: process.env.COOKIE_SECRET,
+    secret: env("COOKIE_SECRET"),
     name: "DISCORD_OAUTH2_SESSION_ID",
     resave: false,
     saveUninitialized: false,
@@ -53,5 +54,5 @@ app.use((err, req, res, next) => {
 app.locals = AppConfig.locals;
 
 app.listen(AppConfig.port, () => {
-  console.log(`Server running in ${process.env.APP_URL}:${process.env.APP_PORT}`);
+  console.log(`Server running in ${env("APP_URL", "http://localhost")}:${env("APP_PORT", 3333)}`);
 });
