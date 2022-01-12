@@ -7,7 +7,7 @@ class Authentication {
     try {
       return next();
     } catch (err) {
-      return response.json({ error: "Nenhuma sessão foi encontrada!" });
+      return  request.flash("error", "Nenhuma sessão foi encontrada!");
     }
   }
 }

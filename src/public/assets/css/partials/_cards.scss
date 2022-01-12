@@ -168,6 +168,28 @@
       border-radius: 50%;
       border: 1px solid #000;
     }
+
+    .user-options {
+      a {
+        display: inline-flex;
+        align-items: center;
+        color: #000;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:active:focus:not(:disabled):not(.disabled) {
+          color: #000;
+          text-decoration: none;
+        }
+
+        i {
+          font-size: 20px;
+          margin-left: 10px;
+        }
+      }
+    }
   }
 }
 

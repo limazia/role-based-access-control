@@ -4,11 +4,11 @@ exports.seed = function (knex) {
     .then(function () {
       return knex("users").insert([
         {
-          id: "715501351e222",
+          id: "cd4244141da8325",
           name: "Acacio de Lima",
           email: "limadeacacio@gmail.com",
-          slug: "lima",
-          avatar_url: "https://cdn.discordapp.com/avatars/317752484204380162/12bce24ce9937fd6b4385973da97a2c5.png",
+          password: "$2b$10$FD3PLumsC59sjMp..vYL6.W8UIBjp5zEjXMUkXdq41UnQC6IXwIyG",
+          avatar: "https://cdn.discordapp.com/avatars/317752484204380162/12bce24ce9937fd6b4385973da97a2c5.png",
           permissions: "view_users, edit_users, login_admin",
         }
       ]);

@@ -1,6 +1,6 @@
 const path = require("path");
 const { env } = require("./../helpers/utils.helper");
-
+ 
 module.exports = {
   development: {
     client: env("DB_CONNECTION"),
@@ -11,11 +11,15 @@ module.exports = {
       password: env("DB_PASSWORD"),
       database: env("DB_DATABASE"),
     },
+    pool: {
+      min: 2,
+      max: 10,
+    },
     migrations: {
-      directory: path.resolve(__dirname, "src", "database", "migrations"),
+      directory: path.resolve(__dirname, "../", "database", "migrations"),
     },
     seeds: {
-      directory: path.resolve(__dirname, "src", "database", "seeds"),
+      directory: path.resolve(__dirname, "../", "database", "seeds"),
     },
   },
 
@@ -29,7 +33,7 @@ module.exports = {
       database: env("DB_DATABASE"),
     },
     migrations: {
-      directory: path.resolve(__dirname, "src", "database", "migrations"),
+      directory: path.resolve(__dirname, "../", "database", "migrations"),
     },
   },
 };

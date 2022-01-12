@@ -74,6 +74,24 @@
   }
 }
 
+.btn-sign,
+.btn-sign:focus,
+.btn-sign:active,
+.btn-sign:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 60px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #3935b5;
+    border-color: #3935b5;
+  }
+}
+
 .btn-plus,
 .btn-plus:focus,
 .btn-plus:active,

@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const env = (key, defaultValue) => {
   const value = process.env[key] || defaultValue;
   if (typeof value === "undefined") {

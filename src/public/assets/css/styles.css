@@ -145,6 +145,55 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #556ee6;
 }
 
+.login-form .login,
+.login-form .image {
+  min-height: 100vh;
+}
+.login-form .bg-image {
+  background-image: url(http://localhost:3000/assets/images/bg-login.png);
+  background-size: cover;
+  background-position: center center;
+}
+
+.register-form .register,
+.register-form .image {
+  min-height: 100vh;
+}
+.register-form .bg-image {
+  background-image: url(http://localhost:3000/assets/images/bg-register.png);
+  background-size: cover;
+  background-position: center center;
+}
+
+.login-form .box-logo,
+.register-form .box-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-form .box-logo .logo-title,
+.register-form .box-logo .logo-title {
+  font-size: 23px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0;
+  line-height: 0;
+}
+.login-form .box-logo .logo-title:hover, .login-form .box-logo .logo-title:focus, .login-form .box-logo .logo-title:active, .login-form .box-logo .logo-title:active:focus:not(:disabled):not(.disabled),
+.register-form .box-logo .logo-title:hover,
+.register-form .box-logo .logo-title:focus,
+.register-form .box-logo .logo-title:active,
+.register-form .box-logo .logo-title:active:focus:not(:disabled):not(.disabled) {
+  color: #000;
+}
+.login-form .box-logo img,
+.register-form .box-logo img {
+  display: inline;
+  max-width: 100%;
+  width: 40px;
+  height: 40px;
+}
+
 .navbar {
   padding: 0px;
 }
@@ -335,6 +384,20 @@ button:active:focus:not(:disabled):not(.disabled) {
   margin-right: 10px;
   border-radius: 50%;
   border: 1px solid #000;
+}
+.card-profile .card-footer .user-options a {
+  display: inline-flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+}
+.card-profile .card-footer .user-options a:hover, .card-profile .card-footer .user-options a:focus, .card-profile .card-footer .user-options a:active, .card-profile .card-footer .user-options a:active:focus:not(:disabled):not(.disabled) {
+  color: #000;
+  text-decoration: none;
+}
+.card-profile .card-footer .user-options a i {
+  font-size: 20px;
+  margin-left: 10px;
 }
 
 .card-chat .card-header {
@@ -591,6 +654,26 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-color: #3935b5;
 }
 
+.btn-sign,
+.btn-sign:focus,
+.btn-sign:active,
+.btn-sign:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 60px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
+.btn-sign:hover,
+.btn-sign:focus:hover,
+.btn-sign:active:hover,
+.btn-sign:active:focus:not(:disabled):not(.disabled):hover {
+  color: #fff;
+  background: #3935b5;
+  border-color: #3935b5;
+}
+
 .btn-plus,
 .btn-plus:focus,
 .btn-plus:active,
@@ -629,4 +712,105 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #18da9b;
   background: transparent;
   border: none;
+}
+
+.form-control {
+  height: 60px;
+  text-indent: 10px;
+  background: #e9ebef;
+  color: #637089;
+  border: none;
+  max-width: 100%;
+  border-radius: 10px;
+}
+.form-control:focus {
+  background: #e9ebef;
+  color: #637089;
+  box-shadow: none;
+}
+.form-control::-moz-placeholder {
+  color: #637089;
+  font-size: 0.9rem;
+}
+.form-control:-ms-input-placeholder {
+  color: #637089;
+  font-size: 0.9rem;
+}
+.form-control::placeholder {
+  color: #637089;
+  font-size: 0.9rem;
+}
+
+.with-icon {
+  position: relative;
+}
+.with-icon input {
+  height: 60px;
+  width: 400px;
+  text-indent: 30px;
+  background-color: #4e5253;
+  color: #aeb0b0;
+  border-radius: 0.25rem;
+  border: none;
+}
+.with-icon inputinput:focus {
+  color: #aeb0b0;
+  background-color: #4e5253;
+  box-shadow: none;
+}
+.with-icon input::-moz-placeholder {
+  color: #aeb0b0;
+  font-size: 0.9rem;
+}
+.with-icon input:-ms-input-placeholder {
+  color: #aeb0b0;
+  font-size: 0.9rem;
+}
+.with-icon input::placeholder {
+  color: #aeb0b0;
+  font-size: 0.9rem;
+}
+.with-icon .fa-search {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  color: #aeb0b0;
+}
+
+.btn-label {
+  position: relative;
+  padding-left: 44px;
+}
+.btn-label .label-icon {
+  position: absolute;
+  width: 32px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-login,
+.link-register {
+  margin-top: 20px;
+  text-align: center;
+}
+.link-login a,
+.link-register a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+.link-login a:hover, .link-login a:focus, .link-login a:active, .link-login a:active:focus:not(:disabled):not(.disabled),
+.link-register a:hover,
+.link-register a:focus,
+.link-register a:active,
+.link-register a:active:focus:not(:disabled):not(.disabled) {
+  text-decoration: none;
+  color: #868e96;
 }/*# sourceMappingURL=styles.css.map */

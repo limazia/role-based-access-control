@@ -21,7 +21,7 @@ routes.post('/login', AuthController.userLogin);
 routes.post('/register', AuthController.userRegister);
 
 // Authenticated
-routes.get('/home', WebController.renderHome);
+routes.get('/home', Authentication.session, WebController.renderHome);
 routes.get('/logout', Authentication.session, AuthController.userLogout);
 
 // API

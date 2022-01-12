@@ -1,6 +1,7 @@
 const { env } = require("./../helpers/utils.helper");
 
 module.exports = {
-  secret: env("APP_KEY"),
-  expiresIn: '7d',
+  secretCookie: env("COOKIE_SECRET"),
+  name: "BLAB_SESSION_ID",
+  expiresIn: 3600000 * 24,
 };

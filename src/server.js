@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
-const { AppConfig } = require("./config");
+const { AppConfig, AuthConfig } = require("./config");
 
 const app = express();
 
@@ -25,12 +25,12 @@ if (env("APP_DEBUG", false) === true) app.use(morgan(':method :url :status :resp
 app.use(cookieParser());
 app.use(
   session({
-    secret: env("COOKIE_SECRET"),
-    name: "DISCORD_OAUTH2_SESSION_ID",
+    secret: AuthConfig.secretCookie,
+    name: AuthConfig.name,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 3600000 * 24,
+      maxAge: AuthConfig.expiresIn,
     },
   })
 );
