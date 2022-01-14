@@ -182,3 +182,14 @@
 .alert {
   border-radius: 6px;
 }
+
+.loading {
+  .logo {
+    width: 150px;
+    height: 150px;
+    background-image: url(http://localhost:3000/assets/images/logo-icon.png);
+    background-size: cover;
+    background-position: center center;
+    animation: zoom-in-zoom-out 1s ease infinite;
+  }
+}
