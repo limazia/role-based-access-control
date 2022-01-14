@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
-const flash = require('connect-flash');
+const flash = require("connect-flash");
+const subdomain = require("express-subdomain");
 
 const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
@@ -21,6 +22,13 @@ app.set("views", [
   __dirname + "/resources/views/errors",
 ]);
 
+app.use(subdomain('cdn', express.static(path.join(__dirname, "../cdn"))));
+app.use(express.static(path.join(__dirname, "../cdn"), {
+  index: false,
+  redirect: false
+}));
+//app.use("/cdn", express.static(path.resolve(__dirname, '../', "cdn")));
+
 if (env("APP_DEBUG", false) === true) app.use(morgan(':method :url :status :response-time ms'));
 app.use(cookieParser());
 app.use(
@@ -34,19 +42,17 @@ app.use(
     },
   })
 );
-
 app.use(function(req, res, next){
   res.locals.user = req.session.user;
   
   next();
 });
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(express.static(path.join(__dirname, "/public")));
-app.use(routes);
+app.use(routes); 
 app.use((err, req, res, next) => {
   handleError(err, res);
 });

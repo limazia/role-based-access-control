@@ -194,6 +194,10 @@ button:active:focus:not(:disabled):not(.disabled) {
   height: 40px;
 }
 
+.alert {
+  border-radius: 6px;
+}
+
 .navbar {
   padding: 0px;
 }
@@ -813,4 +817,70 @@ button:active:focus:not(:disabled):not(.disabled) {
 .link-register a:active:focus:not(:disabled):not(.disabled) {
   text-decoration: none;
   color: #868e96;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 6px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: #fff;
+}
+.badge.badge-ceo {
+  background-color: #b23cfd;
+}
+.badge.badge-fullstack {
+  background-color: #ffa900;
+}
+.badge.badge-frontend {
+  background-color: #f93154;
+}
+.badge.badge-backend {
+  background-color: #00b74a;
+}
+.badge.badge-support {
+  background-color: #1266f1;
+}
+
+.badge-role.dev {
+  border: solid;
+  -o-border-image: url(https://www.w3schools.com/cssref/border.png) 30 stretch;
+     border-image: url(https://www.w3schools.com/cssref/border.png) 30 stretch;
+  background: url(https://media1.giphy.com/media/iSWDWGEBsIiQAHdLfN/giphy.gif), linear-gradient(1deg, #00000000 0%, #ef3e3e00 100%, #ffffff2b);
+}
+.badge-role.coordenador {
+  color: #ef8700;
+  font-weight: 700;
+  background: url(https://i.imgur.com/ke1ROyD.gif) repeat;
+}
+.badge-role.co-administrador {
+  color: purple;
+  font-weight: 700;
+  background: url(https://cdn.discordapp.com/attachments/543468827657109506/620681777819811880/co_adm.gif) repeat;
+}
+.badge-role.administrador {
+  color: red;
+  font-weight: 700;
+  background: url(https://cdn.discordapp.com/attachments/543468827657109506/620681770786095118/adm.gif) repeat;
+}
+.badge-role.vip {
+  color: #00bfff;
+  font-weight: 700;
+  background: url(https://media.discordapp.net/attachments/468889886586568714/643789977762660352/blue.gif) repeat;
+}
+.badge-role.super-vip {
+  color: #ffdf00;
+  font-weight: 700;
+  background: url(https://media.discordapp.net/attachments/468889886586568714/643790950988251137/yellow.gif) repeat;
+}
+.badge-role.vip-extreme {
+  color: #dc143c;
+  font-weight: 700;
+  background: url(https://media.discordapp.net/attachments/468889886586568714/643791233390739466/red.gif) repeat;
 }/*# sourceMappingURL=styles.css.map */
