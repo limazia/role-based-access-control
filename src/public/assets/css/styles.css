@@ -533,15 +533,17 @@ button:active:focus:not(:disabled):not(.disabled) {
   background: #ed4e6e;
 }
 .card-chat .card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   max-height: 100%;
   height: 68px;
   background: #fff;
   border-top: 1px solid rgba(115, 115, 115, 0.3);
 }
-.card-chat .card-footer .input-message input {
+.card-chat .card-footer form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-chat .card-footer form .input-message input {
   height: 45px;
   text-indent: 10px;
   background: transparent;
@@ -550,24 +552,24 @@ button:active:focus:not(:disabled):not(.disabled) {
   max-width: 100%;
   border-radius: 0.25rem;
 }
-.card-chat .card-footer .input-message input:focus {
+.card-chat .card-footer form .input-message input:focus {
   background: transparent;
   color: #637089;
   box-shadow: none;
 }
-.card-chat .card-footer .input-message input::-moz-placeholder {
+.card-chat .card-footer form .input-message input::-moz-placeholder {
   color: #637089;
   font-size: 0.9rem;
 }
-.card-chat .card-footer .input-message input:-ms-input-placeholder {
+.card-chat .card-footer form .input-message input:-ms-input-placeholder {
   color: #637089;
   font-size: 0.9rem;
 }
-.card-chat .card-footer .input-message input::placeholder {
+.card-chat .card-footer form .input-message input::placeholder {
   color: #637089;
   font-size: 0.9rem;
 }
-.card-chat .card-footer .input-message .input-group-append .input-group-text {
+.card-chat .card-footer form .input-message .input-group-append .input-group-text {
   background: transparent;
   border: none;
 }

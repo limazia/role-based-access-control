@@ -358,41 +358,43 @@
   }
 
   .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     max-height: 100%;
     height: 68px;
     background: #fff;
     border-top: 1px solid rgba(115, 115, 115, 0.3);
+    
+    form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .input-message {
-      input {
-        height: 45px;
-        text-indent: 10px;
-        background: transparent;
-        color: #637089;
-        border: none;
-        max-width: 100%;
-        border-radius: 0.25rem;
-
-        &:focus {
+      .input-message {
+        input {
+          height: 45px;
+          text-indent: 10px;
           background: transparent;
           color: #637089;
-          box-shadow: none;
-        }
-
-        &::placeholder {
-          color: #637089;
-          font-size: 0.9rem;
-        }
-      }
-
-      .input-group-append {
-        .input-group-text {
-          background: transparent;
           border: none;
+          max-width: 100%;
+          border-radius: 0.25rem;
+
+          &:focus {
+            background: transparent;
+            color: #637089;
+            box-shadow: none;
+          }
+
+          &::placeholder {
+            color: #637089;
+            font-size: 0.9rem;
+          }
+        }
+
+        .input-group-append {
+          .input-group-text {
+            background: transparent;
+            border: none;
+          }
         }
       }
     }
