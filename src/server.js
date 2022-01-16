@@ -24,6 +24,18 @@ app.set("views", [
   __dirname + "/resources/views/errors",
 ]);
 
+<<<<<<< HEAD
+=======
+if (env("APP_ENV", "development") !== "development") {
+  app.use("/cdn", express.static(path.resolve(__dirname, '../', "cdn")));
+} else {
+  app.use(subdomain('cdn', express.static(path.join(__dirname, "../cdn"))));
+  app.use(express.static(path.join(__dirname, "../cdn"), {
+    index: false,
+    redirect: false
+  }));
+}
+>>>>>>> 4714387bca2f27d68ae6c14e3b4700c5320a3b25
 if (env("APP_DEBUG", false) === true) app.use(morgan(':method :url :status :response-time ms'));
 app.use(cookieParser());
 app.use(

@@ -198,6 +198,16 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-radius: 6px;
 }
 
+.loading .logo {
+  width: 150px;
+  height: 150px;
+  background-image: url(http://localhost:3000/assets/images/logo-icon.png);
+  background-size: cover;
+  background-position: center center;
+  -webkit-animation: zoom-in-zoom-out 1s ease infinite;
+          animation: zoom-in-zoom-out 1s ease infinite;
+}
+
 .navbar {
   padding: 0px;
 }
@@ -885,4 +895,28 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #dc143c;
   font-weight: 700;
   background: url(https://media.discordapp.net/attachments/468889886586568714/643791233390739466/red.gif) repeat;
+}
+
+@-webkit-keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }/*# sourceMappingURL=styles.css.map */
