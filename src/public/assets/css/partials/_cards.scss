@@ -34,7 +34,8 @@
   }
 }
 
-.room-photo {
+.room-photo,
+.room-selected-photo {
   img {
     width: 68px;
     height: 68px;
@@ -49,13 +50,15 @@
   }
 }
 
-.room-title {
+.room-title,
+.room-selected-title {
   word-break: break-all;
   font-size: 0.9rem;
   margin-bottom: 0;
 }
 
-.room-name {
+.room-name,
+.room-selected-name {
   color: #6c757d;
 }
 

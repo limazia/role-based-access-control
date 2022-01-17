@@ -19,19 +19,16 @@
                       <div class="d-flex flex-row align-items-center">
                         <div class="room-photo">
                           <img src="assets/images/room.png">
+                          <% if(room.room_private > 0){ %>
+                            <div class="icon-box">
+                              <span class="room-badge">
+                                <i class="fad fa-lock private"></i>
+                              </span>
+                            </div>
+                          <% } %>
                         </div>
                         <div class="ms-2">
-                          <% if(room.room_private > 0){ %>
-                            <h6 class="room-title">
-                              <%= room.room_title %>
-                              <span class="room-badge">
-                                <i class="fad fa-lock private" data-toggle="tooltip" data-placement="right"
-                                  title="Sala privada"></i>
-                              </span>
-                            </h6>
-                          <% } else { %>
                             <h6 class="room-title"><%= room.room_title %></h6>
-                          <% } %>
                           <small class="room-name">#<%= room.room_name %></small>
                         </div>
                       </div>
@@ -63,7 +60,12 @@
         </div>
       </div>
       <div class="col-md-9 clearmp">
-        <%- include('layouts/chat_landing.ejs') %>
+        <div id="chat_landing">
+          <%- include('layouts/chat_landing.ejs') %>
+        </div>
+        <div id="chat_box" style="display: none;">
+          <%- include('layouts/chat.ejs') %>
+        </div>
       </div>
     </div>
   </div>

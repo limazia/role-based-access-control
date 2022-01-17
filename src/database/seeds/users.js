@@ -11,7 +11,7 @@ exports.seed = function (knex) {
           discriminator: 2406
         },
         {
-          id: "cd4244141da8325",
+          id: "e23ff5c62c4c756",
           username: "João Menezes",
           email: "joaomenezes@gmail.com",
           password: "$2b$10$RORbU4GFCKgp8Q53Kcxt4.5yTAJQVzntKqkAYA.SI49M9zhh9d7BS",

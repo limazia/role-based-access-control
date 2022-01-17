@@ -289,7 +289,8 @@ button:active:focus:not(:disabled):not(.disabled) {
   font-size: 10px;
 }
 
-.room-photo img {
+.room-photo img,
+.room-selected-photo img {
   width: 68px;
   height: 68px;
   -o-object-fit: cover;
@@ -297,18 +298,21 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-radius: 25%;
   margin-right: 10px;
 }
-.room-photo .icon-box {
+.room-photo .icon-box,
+.room-selected-photo .icon-box {
   top: 63px;
   left: 75px;
 }
 
-.room-title {
+.room-title,
+.room-selected-title {
   word-break: break-all;
   font-size: 0.9rem;
   margin-bottom: 0;
 }
 
-.room-name {
+.room-name,
+.room-selected-name {
   color: #6c757d;
 }
 
