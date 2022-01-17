@@ -16,7 +16,7 @@
                 <p class="text-muted mb-4 text-center">Crie uma conta para explorar ao máximo.</p>
                 <form method="POST" action="/register">
                   <div class="form-group mb-3">
-                    <input type="text" name="name" placeholder="Nome" class="form-control" <%= (filled) ? `value=${filled.name}` : "" %>>
+                    <input type="text" name="username" placeholder="Nome de usuário" class="form-control" <%= (filled) ? `value=${filled.username}` : "" %>>
                   </div>
                   <div class="form-group mb-3">
                     <input type="email" name="email" placeholder="E-mail" class="form-control" <%= (filled) ? `value=${filled.email}` : "" %>>

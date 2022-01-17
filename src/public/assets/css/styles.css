@@ -584,6 +584,27 @@ button:active:focus:not(:disabled):not(.disabled) {
   border: none;
 }
 
+.card-chat-landing .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.card-chat-landing .card-body .welcome {
+  display: block;
+  text-align: center;
+}
+.card-chat-landing .card-body .welcome img,
+.card-chat-landing .card-body .welcome svg {
+  padding-bottom: 30px;
+}
+.card-chat-landing .card-body .welcome span {
+  font-size: 1.3rem;
+}
+.card-chat-landing .card-body .welcome span.logo {
+  color: #f46f49;
+}
+
 .btn-create-room,
 .btn-create-room:focus,
 .btn-create-room:active,

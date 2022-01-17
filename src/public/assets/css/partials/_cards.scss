@@ -362,7 +362,7 @@
     height: 68px;
     background: #fff;
     border-top: 1px solid rgba(115, 115, 115, 0.3);
-    
+
     form {
       display: flex;
       justify-content: space-between;
@@ -395,6 +395,32 @@
             background: transparent;
             border: none;
           }
+        }
+      }
+    }
+  }
+}
+
+.card-chat-landing {
+  .card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .welcome {
+      display: block;
+      text-align: center;
+
+      img,
+      svg {
+        padding-bottom: 30px;
+      }
+      span {
+        font-size: 1.3rem;
+
+        &.logo {
+          color: #f46f49;
         }
       }
     }

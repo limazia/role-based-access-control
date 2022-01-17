@@ -1,3 +1,8 @@
+const moment = require("moment");
+const connection = require("../../database/connection");
+
+moment.locale("pt-br");
+
 class WebController {
   async renderLanding(request, response, next) {
     try {
@@ -37,7 +42,7 @@ class WebController {
         error: request.flash('error'),
         success: request.flash('success'),
         filled: {
-          name: request.flash('filled_name') || null,
+          username: request.flash('filled_username') || null,
           email: request.flash('filled_email') || null,
         }
       });
@@ -48,11 +53,35 @@ class WebController {
 
   async renderHome(request, response, next) {
     try {
+      const rooms = await connection("rooms").orderBy("createdAt", "desc");
+      //.leftJoin("users_balance", "users_balance.balance_user", "=", "users.id")
+
+      const serializedRooms = rooms.map((item) => {
+        const {
+          room_id,
+          room_title,
+          room_name,
+          room_private,
+          room_photo,
+          updateAt,
+          createdAt
+        } = item;
+
+        return {
+          room_id,
+          room_title,
+          room_name,
+          room_private: room_private === 1 ? true : false,
+          room_photo,
+          updateAt: moment(updateAt).format("LL"),
+          createdAt: moment(createdAt).format("LL"),
+        };
+      });
+
       return response.status(200).render("Home", {
         title: "Início",
         session: request.session.user || null,
-        error: request.flash('error'),
-        success: request.flash('success')
+        rooms: serializedRooms,
       });
     } catch (error) {
       next(error);

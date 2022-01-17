@@ -1,16 +1,16 @@
 const bcrypt = require("bcrypt");
 const cryptoRandomString = require("crypto-random-string");
+const moment = require("moment");
 
 const connection = require("../../database/connection");
 
-//const moment = require("moment");
-//moment.locale("pt-br");
+moment.locale("pt-br");
 
 class AuthController {
   async userLogin(request, response, next) {
     try {
       const { email, password } = request.body;
-      const user = await connection("users").select("*").where({ email }).leftJoin("users_details", "users_details.permissions", "=", "users.id");
+      const user = await connection("users").select("*").where({ email }).leftJoin("users_details", "users_details.user_id", "=", "users.id");
       request.flash("filled_email", email);
 
       if (!email) {
@@ -30,7 +30,30 @@ class AuthController {
         }
 
         user[0].password = undefined;
-        request.session.user = user[0];
+
+        const {
+          id,
+          username,
+          email,
+          discriminator,
+          avatar,
+          permissions,
+          updateAt,
+          createdAt
+        } = user[0];
+
+        const serializedUser = {
+          id,
+          username,
+          email,
+          discriminator,
+          avatar,
+          permissions,
+          updateAt: moment(updateAt).format("LL"),
+          createdAt: moment(createdAt).format("LL"),
+        };
+
+        request.session.user = serializedUser;
 
         return response.redirect("/home");
       } else {
@@ -44,17 +67,17 @@ class AuthController {
 
   async userRegister(request, response, next) {
     try {
-      const { name, email, password, confirmpassword } = request.body;
+      const { username, email, password, confirmpassword } = request.body;
       const user = await connection("users").select("*").where({ email });
       const salt = bcrypt.genSaltSync(10);
       const passwordCrypt = bcrypt.hashSync(password, salt);
       const id = cryptoRandomString({ length: 15 });
 
-      request.flash("filled_name", name);
+      request.flash("filled_username", username);
       request.flash("filled_email", email);
 
-      if (!name) {
-        request.flash("error", "Digite um nome");
+      if (!username) {
+        request.flash("error", "Digite um nome de usuário");
         return response.redirect("/register");
       }
 
@@ -82,7 +105,7 @@ class AuthController {
 
       await trx("users").insert({
         id,
-        name,
+        username,
         email,
         password: passwordCrypt,
       });
@@ -104,7 +127,7 @@ class AuthController {
   async userLogout(request, response, next) {
     try {
       request.session.user = null;
-      request.flash("filled_name", null);
+      request.flash("filled_username", null);
       request.flash("filled_email", null);
       
       return response.redirect("/");

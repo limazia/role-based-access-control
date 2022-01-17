@@ -12,51 +12,47 @@
           <div class="card-body mt-4">
             <div class="rooms">
               <h3>Salas disponíveis</h3>
-              <div class="list-group mt-3">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                  <div class="d-flex flex-row align-items-center">
-                    <div class="room-photo">
-                      <img src="assets/images/room.png">
-                    </div>
-                    <div class="ms-2">
-                      <h6 class="room-title">
-                        Sala de Teste
-                        <span class="room-badge">
-                          <i class="fad fa-lock private" data-toggle="tooltip" data-placement="right"
-                            title="Sala privada"></i>
-                        </span>
-                      </h6>
-                      <small class="room-name">#teste</small>
-                    </div>
+              <div class="list-group mt-3" id="rooms_available">
+                <% if(rooms.length> 0){ %>
+                  <% rooms.forEach((room, index) => {%>
+                    <a href="#" id="<%= room.room_id %>" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex flex-row align-items-center">
+                        <div class="room-photo">
+                          <img src="assets/images/room.png">
+                        </div>
+                        <div class="ms-2">
+                          <% if(room.room_private > 0){ %>
+                            <h6 class="room-title">
+                              <%= room.room_title %>
+                              <span class="room-badge">
+                                <i class="fad fa-lock private" data-toggle="tooltip" data-placement="right"
+                                  title="Sala privada"></i>
+                              </span>
+                            </h6>
+                          <% } else { %>
+                            <h6 class="room-title"><%= room.room_title %></h6>
+                          <% } %>
+                          <small class="room-name">#<%= room.room_name %></small>
+                        </div>
+                      </div>
+                    </a>
+                  <% }); %>
+                <% } else { %>
+                  <div class="alert alert-warning" role="alert">
+                    Nenhuma sala foi encontrada
                   </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div class="d-flex flex-row align-items-center">
-                    <div class="room-photo">
-                      <img src="assets/images/room.png">
-                    </div>
-                    <div class="ms-2">
-                      <h6 class="room-title">Call of Duty - Warzone</h6>
-                      <small class="room-name">#warzone</small>
-                    </div>
-                  </div>
-                </a>
+                <% } %>
               </div>
             </div>
           </div>
           <div class="card-footer">
             <div class="d-flex flex-row align-items-center">
               <div class="invite-user-photo">
-                <img src="http://localhost:3000/cdn/avatar1.jpg" alt="Acacio">
+                <img src="<%= session.avatar %>" alt="Acacio">
               </div>
               <div class="ms-2">
-<<<<<<< HEAD
-                <h6 class="mb-0" id="name"><%= session.name %></h6>
-                <small class="text-muted badge-role dev">Administrador</small>
-=======
-                <h6 class="mb-0"><%= session.name %></h6>
-                <small class="text-muted badge-role vip-extreme">Administrador</small>
->>>>>>> 4714387bca2f27d68ae6c14e3b4700c5320a3b25
+                <h6 class="mb-0" id="name"><%= session.username %></h6>
+                <small class="text-muted badge-role vip">#<%= session.discriminator %></small>
               </div>
             </div>
             <div class="user-options">
@@ -67,72 +63,7 @@
         </div>
       </div>
       <div class="col-md-9 clearmp">
-        <div class="card card-chat">
-          <div class="card-header">
-            <div class="chat-info">
-              <div class="room-photo">
-                <img src="assets/images/room.png">
-              </div>
-              <div class="ms-2">
-                <h6 class="room-title">Sala de Teste</h6>
-                <small class="room-name">#teste</small>
-              </div>
-            </div>
-            <div class="options">
-              <i class="fal fa-flag-alt"></i>
-              <i class="fal fa-info-circle"></i>
-              <%- include('components/permissions.ejs') %>
-            </div>
-          </div>
-          <div class="card-body" id="chat-body">
-            <div class="text-center">
-              <small class="text-muted">11:00 AM</small>
-            </div>
-            <div class="answer left">
-              <div class="avatar">
-                <img src="assets/images/avatar2.jpg" alt="Bianca">
-              </div>
-              <div class="name">Bianca Mackenzie</div>
-              <div class="text">Teste</div>
-              <small class="time">11:38 AM</small>
-            </div>
-            <div class="answer right">
-              <div class="avatar">
-                <img src="assets/images/avatar1.jpg" alt="Acacio">
-                <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
-                  <i class="fas fa-user-crown"></i>
-                </div>
-              </div>
-              <div class="text">Teste</div>
-              <small class="time">11:38 AM</small>
-            </div>
-            <div class="answer left">
-              <div class="avatar">
-                <img src="assets/images/avatar3.jpg" alt="Julia">
-                <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
-                  <i class="fas fa-user-crown"></i>
-                </div>
-              </div>
-              <div class="name">Julia Oliveira</div>
-              <div class="text">Teste</div>
-              <small class="time">11:40 AM</small>
-            </div>
-            <div class="messages"></div>
-          </div>
-          <div class="card-footer">
-            <form id="chat">
-              <button class="btn btn-plus"><i class="far fa-plus"></i></button>
-              <button class="btn btn-send-image"><i class="far fa-images"></i></button>
-              <div class="input-group input-message">
-                <input type="text" name="message" class="form-control" placeholder="Enviar mensagem para #teste">
-                <div class="input-group-append">
-                  <span class="input-group-text"><i class="fad fa-paper-plane" style="color: #cccccc;"></i></span>
-                </div>
-              </div>
-              <input type="submit" hidden />
-            </form>
-          </div>
-        </div>
+        <%- include('layouts/chat_landing.ejs') %>
       </div>
     </div>
   </div>
