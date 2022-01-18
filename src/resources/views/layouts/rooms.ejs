@@ -1,0 +1,32 @@
+<div class="rooms">
+  <h3>Salas disponíveis</h3>
+  <div class="list-group mt-3" id="rooms_available">
+    <% if(rooms.length> 0){ %>
+      <% rooms.forEach((roomRow, index)=> {%>
+        <a href="/room/r/<%= roomRow.room_name %>" id="<%= roomRow.room_id %>"
+          class="list-group-item list-group-item-action flex-column align-items-start<%= (typeof room != 'undefined' ? (room.room_name == roomRow.room_name ? ' active' : '') : '') %>">
+          <div class="d-flex flex-row align-items-center">
+            <div class="room-photo">
+              <img src="<%= roomRow.room_photo %>">
+              <% if(roomRow.room_private> 0){ %>
+                <div class="icon-box">
+                  <span class="room-badge">
+                    <i class="fad fa-lock private"></i>
+                  </span>
+                </div>
+                <% } %>
+            </div>
+            <div class="ms-2">
+              <h6 class="room-title"><%= roomRow.room_title %></h6>
+              <small class="room-name">#<%= roomRow.room_name %></small>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    <% } else { %>
+      <div class="alert alert-warning" role="alert">
+        Nenhuma sala foi encontrada
+      </div>
+    <% } %>
+  </div>
+</div>

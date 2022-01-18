@@ -1,0 +1,73 @@
+<%- include('partials/header.ejs') %>
+  <div class="container-fluid chat-box">
+    <div class="row h-100 clearmp">
+      <div class="col-md-3 clearmp">
+        <div class="card card-profile">
+          <div class="card-header">
+            <img src="/assets/images/logo-icon.png" class="img-fluid mr-1" />
+            <h3 class="logo-title">
+              <%= PAGE_TITLE %>
+            </h3>
+          </div>
+          <div class="card-body mt-4">
+            <%- include('layouts/rooms.ejs') %>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex flex-row align-items-center">
+              <div class="invite-user-photo">
+                <img src="<%= session.avatar %>" alt="Acacio">
+              </div>
+              <div class="ms-2">
+                <h6 class="mb-0" id="name"><%= session.username %></h6>
+                <small class="text-muted badge-role vip">#<%= session.discriminator %></small>
+              </div>
+            </div>
+            <div class="user-options">
+              <a href="#"><i class="fas fa-cog"></i></a>
+              <a href="/logout" class="logout"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 clearmp">
+        <div class="card card-chat">
+          <div class="card-header">
+            <div class="chat-info">
+              <div class="room-photo">
+                <img src="<%= room.room_photo %>">
+              </div>
+              <div class="ms-2">
+                <h6 class="room-title"><%= room.room_title %></h6>
+                <small class="room-name">#<%= room.room_name %></small>
+              </div>
+            </div>
+            <div class="options">
+              <i class="fal fa-flag-alt"></i>
+              <i class="fal fa-info-circle"></i>
+              <%- include('layouts/permissions.ejs') %>
+            </div>
+          </div>
+          <div class="card-body" id="chat-body">
+            <div class="text-center">
+              <small class="text-muted">11:00 AM</small>
+            </div>
+            <div class="messages"></div>
+          </div>
+          <div class="card-footer">
+            <form id="chat">
+              <button class="btn btn-plus"><i class="far fa-plus"></i></button>
+              <button class="btn btn-send-image"><i class="far fa-images"></i></button>
+              <div class="input-group input-message">
+                <input type="text" name="message" class="form-control" placeholder="Enviar mensagem para #teste">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fad fa-paper-plane" style="color: #cccccc;"></i></span>
+                </div>
+              </div>
+              <input type="submit" hidden />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer.ejs') %>

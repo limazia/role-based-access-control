@@ -11,7 +11,7 @@ $(document).ready(function () {
   function renderMessage(message) {
     $(".messages").append(`<div class="answer right">
     <div class="avatar">
-      <img src="assets/images/avatar1.jpg" alt="${message.author}">
+      <img src="/cdn/avatar1.jpg" alt="${message.author}">
       <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
         <i class="fas fa-user-crown"></i>
       </div>

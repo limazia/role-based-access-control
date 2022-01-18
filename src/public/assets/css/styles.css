@@ -602,10 +602,12 @@ button:active:focus:not(:disabled):not(.disabled) {
 .card-chat-landing .card-body .welcome svg {
   padding-bottom: 30px;
 }
-.card-chat-landing .card-body .welcome span {
+.card-chat-landing .card-body .welcome span,
+.card-chat-landing .card-body .welcome b {
   font-size: 1.3rem;
 }
-.card-chat-landing .card-body .welcome span.logo {
+.card-chat-landing .card-body .welcome span.logo,
+.card-chat-landing .card-body .welcome b.logo {
   color: #f46f49;
 }
 

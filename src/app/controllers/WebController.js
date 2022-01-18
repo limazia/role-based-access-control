@@ -1,5 +1,8 @@
 const moment = require("moment");
+
 const connection = require("../../database/connection");
+const { getPhoto } = require("../../helpers/chat.helper");
+const { getAllRooms } = require("../../helpers/while.helper");
 
 moment.locale("pt-br");
 
@@ -53,35 +56,33 @@ class WebController {
 
   async renderHome(request, response, next) {
     try {
-      const rooms = await connection("rooms").orderBy("createdAt", "desc");
-      //.leftJoin("users_balance", "users_balance.balance_user", "=", "users.id")
-
-      const serializedRooms = rooms.map((item) => {
-        const {
-          room_id,
-          room_title,
-          room_name,
-          room_private,
-          room_photo,
-          updateAt,
-          createdAt
-        } = item;
-
-        return {
-          room_id,
-          room_title,
-          room_name,
-          room_private: room_private === 1 ? true : false,
-          room_photo,
-          updateAt: moment(updateAt).format("LL"),
-          createdAt: moment(createdAt).format("LL"),
-        };
-      });
-
+      
+      console.log(getAllRooms(...["createdAt", "desc"]))
+      
       return response.status(200).render("Home", {
         title: "Início",
         session: request.session.user || null,
-        rooms: serializedRooms,
+        rooms: await getAllRooms(...["createdAt", "desc"]),
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  
+  async renderRoom(request, response, next) {
+    try {
+      const { room_name } = request.params;
+      const room = await connection("rooms").orderBy("createdAt", "desc").where({ room_name });
+
+      return response.status(200).render("[room]", {
+        title: `${room[0].room_title} (#${room[0].room_name})`,
+        session: request.session.user || null,
+        rooms: await getAllRooms(...["createdAt", "desc"]),
+        room: {
+          room_photo: getPhoto(room[0].room_photo),
+          room_title: room[0].room_title,
+          room_name: room[0].room_name,
+        }
       });
     } catch (error) {
       next(error);

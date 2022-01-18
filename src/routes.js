@@ -22,6 +22,7 @@ routes.post('/register', AuthController.userRegister);
 
 // Authenticated
 routes.get('/home', Authentication.session, WebController.renderHome);
+routes.get('/room/r/:room_name', Authentication.session, WebController.renderRoom);
 routes.get('/logout', Authentication.session, AuthController.userLogout);
 
 // API

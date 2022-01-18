@@ -4,48 +4,18 @@
       <div class="col-md-3 clearmp">
         <div class="card card-profile">
           <div class="card-header">
-            <img src="assets/images/logo-icon.png" class="img-fluid mr-1" />
+            <img src="/assets/images/logo-icon.png" class="img-fluid mr-1" />
             <h3 class="logo-title">
               <%= PAGE_TITLE %>
             </h3>
           </div>
           <div class="card-body mt-4">
-            <div class="rooms">
-              <h3>Salas disponíveis</h3>
-              <div class="list-group mt-3" id="rooms_available">
-                <% if(rooms.length> 0){ %>
-                  <% rooms.forEach((room, index) => {%>
-                    <a href="#" id="<%= room.room_id %>" class="list-group-item list-group-item-action flex-column align-items-start">
-                      <div class="d-flex flex-row align-items-center">
-                        <div class="room-photo">
-                          <img src="assets/images/room.png">
-                          <% if(room.room_private > 0){ %>
-                            <div class="icon-box">
-                              <span class="room-badge">
-                                <i class="fad fa-lock private"></i>
-                              </span>
-                            </div>
-                          <% } %>
-                        </div>
-                        <div class="ms-2">
-                            <h6 class="room-title"><%= room.room_title %></h6>
-                          <small class="room-name">#<%= room.room_name %></small>
-                        </div>
-                      </div>
-                    </a>
-                  <% }); %>
-                <% } else { %>
-                  <div class="alert alert-warning" role="alert">
-                    Nenhuma sala foi encontrada
-                  </div>
-                <% } %>
-              </div>
-            </div>
+            <%- include('layouts/rooms.ejs') %> 
           </div>
           <div class="card-footer">
             <div class="d-flex flex-row align-items-center">
               <div class="invite-user-photo">
-                <img src="<%= session.avatar %>" alt="Acacio">
+                <img src="<%= session.avatar %>" alt="<%= session.username %>">
               </div>
               <div class="ms-2">
                 <h6 class="mb-0" id="name"><%= session.username %></h6>
@@ -60,13 +30,15 @@
         </div>
       </div>
       <div class="col-md-9 clearmp">
-        <div id="chat_landing">
-          <%- include('layouts/chat_landing.ejs') %>
-        </div>
-        <div id="chat_box" style="display: none;">
-          <%- include('layouts/chat.ejs') %>
+        <div class="card card-chat-landing">
+          <div class="card-body">
+            <div class="welcome">
+              <img src="assets/images/bg-landing-chat.svg" onload="SVGInject(this)" class="img-fluid">
+              <span>Bem-vindo ao <b class="logo"><%= PAGE_TITLE %></b>.</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <%- include('partials/footer.ejs') %>
+<%- include('partials/footer.ejs') %>
