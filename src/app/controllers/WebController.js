@@ -55,10 +55,7 @@ class WebController {
   }
 
   async renderHome(request, response, next) {
-    try {
-      
-      console.log(getAllRooms(...["createdAt", "desc"]))
-      
+    try {      
       return response.status(200).render("Home", {
         title: "Início",
         session: request.session.user || null,
@@ -74,7 +71,11 @@ class WebController {
       const { room_name } = request.params;
       const room = await connection("rooms").orderBy("createdAt", "desc").where({ room_name });
 
-      return response.status(200).render("[room]", {
+      if (room.length == 0) {
+        response.redirect("/home");
+      }
+
+      return response.status(200).render("Room", {
         title: `${room[0].room_title} (#${room[0].room_name})`,
         session: request.session.user || null,
         rooms: await getAllRooms(...["createdAt", "desc"]),

@@ -3,6 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
+const { getRolePermission } = require("../../helpers/chat.helper");
 
 moment.locale("pt-br");
 
@@ -10,7 +11,11 @@ class AuthController {
   async userLogin(request, response, next) {
     try {
       const { email, password } = request.body;
-      const user = await connection("users").select("*").where({ email }).leftJoin("users_details", "users_details.user_id", "=", "users.id");
+      const user = await connection("users")
+        .select("*")
+        .where({ email })
+        .leftJoin("users_details", "users_details.user_id", "=", "users.id")
+        .leftJoin("roles", "roles.role_id", "=", "users_details.role");
       request.flash("filled_email", email);
 
       if (!email) {
@@ -37,7 +42,9 @@ class AuthController {
           email,
           discriminator,
           avatar,
-          permissions,
+          role,
+          role_class,
+          role_permissions,
           updateAt,
           createdAt
         } = user[0];
@@ -48,7 +55,9 @@ class AuthController {
           email,
           discriminator,
           avatar,
-          permissions,
+          role,
+          role_class,
+          role_permissions: getRolePermission(role_permissions),
           updateAt: moment(updateAt).format("LL"),
           createdAt: moment(createdAt).format("LL"),
         };

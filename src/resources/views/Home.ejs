@@ -13,19 +13,7 @@
             <%- include('layouts/rooms.ejs') %> 
           </div>
           <div class="card-footer">
-            <div class="d-flex flex-row align-items-center">
-              <div class="invite-user-photo">
-                <img src="<%= session.avatar %>" alt="<%= session.username %>">
-              </div>
-              <div class="ms-2">
-                <h6 class="mb-0" id="name"><%= session.username %></h6>
-                <small class="text-muted badge-role vip">#<%= session.discriminator %></small>
-              </div>
-            </div>
-            <div class="user-options">
-              <a href="#"><i class="fas fa-cog"></i></a>
-              <a href="/logout" class="logout"><i class="fas fa-sign-out-alt"></i></a>
-            </div>
+            <%- include('layouts/profile.ejs') %> 
           </div>
         </div>
       </div>

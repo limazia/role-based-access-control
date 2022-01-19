@@ -3,7 +3,6 @@ exports.up = function (knex) {
     table.string("room_id").primary().unique().notNullable();
     table.string("room_title", 25).notNullable();
     table.string("room_name", 30).notNullable();
-    table.integer("room_private", 0).notNullable();
     table.string("room_photo");
 
     table.timestamp("updateAt").defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

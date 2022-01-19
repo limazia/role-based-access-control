@@ -17,6 +17,12 @@ const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
 const { AppConfig, AuthConfig } = require("./config");
+const {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+} = require("./helpers/user.helper");
 
 app.set("view engine", "ejs");
 app.set("views", [
@@ -46,7 +52,8 @@ app.use(function(req, res, next){
     email: "limadeacacio@gmail.com",
     discriminator: "2406",
     avatar: "http://localhost:3000/cdn/avatar1.jpg",
-    permissions: "view_users, edit_users",
+    role_class: "badge-role dev",
+    role_permissions: "edit_name, delete_room",
     updateAt: "2022-01-16 15:36:21",
     createdAt: "2022-01-13 22:12:35",
   };
@@ -66,31 +73,7 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
-// Cria um array com as mensagens
-let users = [];
-let messages = [];
-
-// Quando um client se conectar
-io.on("connection", socket => {
-    console.log(`Socket conectado: ${socket.id}`);
-
-    // Envia uma mensagem ao socket
-    socket.emit("previousMessages", messages);
-
-    // Ao executar a função no Front-end, recebemos no Back-end pra tratar da maneira que quisermos
-    socket.on("sendMessage", data => {
-      // Envia a informação pro array messages
-      messages.push(data);
-      
-      // Envia para todos os sockets
-      socket.broadcast.emit("receivedMessage", data);
-    });
-  
-    // client disconnected
-    socket.on('disconnect', function() {
-      console.log(`${socket.id} is disconnected.`);
-    });
-});
+ 
 
 app.locals = AppConfig.locals;
 

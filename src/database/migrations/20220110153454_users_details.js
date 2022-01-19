@@ -8,7 +8,7 @@ exports.up = function (knex) {
       .onDelete("CASCADE")
       .primary();
     table.string("avatar");
-    table.string("permissions").notNullable();
+    table.string("role").notNullable();
 
     table.timestamp("updateAt").defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     table.timestamp("createdAt").defaultTo(knex.raw("CURRENT_TIMESTAMP"));

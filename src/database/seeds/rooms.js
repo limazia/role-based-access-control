@@ -7,7 +7,11 @@ exports.seed = function (knex) {
           room_id: "649ebe0468ac6",
           room_title: "Teste",
           room_name: "teste",
-          room_private: 1,
+        },
+        {
+          room_id: "b68c3d75f19c7",
+          room_title: "Fortnite Brasil",
+          room_name: "fortnitebr",
         }
       ]);
     });
