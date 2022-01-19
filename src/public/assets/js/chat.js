@@ -2,7 +2,7 @@ $(document).ready(function () {
   const socket = io("http://localhost:3000");
 
   const queryString = window.location.pathname;
-  const nameRoom = queryString.replace("/room/", "");
+  const nameRoom = queryString.split("/room/");
 
   const username = $("#username");
   const discriminator = $("#discriminator");
@@ -10,8 +10,8 @@ $(document).ready(function () {
 
   const usersList = $(".users_list");
 
-  if (nameRoom != "/home" || nameRoom != "/" || nameRoom != "/login" || nameRoom != "/register") {
-    socket.emit("joinRoom", { name: username.text(), room: nameRoom });
+  if (nameRoom[1] !== undefined) {
+    socket.emit("joinRoom", { name: username.text(), room: nameRoom[1] });
   }
  
   function scrollSmoothToBottom() {
@@ -59,11 +59,12 @@ $(document).ready(function () {
 
   socket.on("users", (users) => {
     for (user of users) {
-      usersList.append(`<small>${user.name}</small>`);
+      usersList.append(`<p class="mb-0"><small>${user.name}</small></p>`);
     }
   });
 
   socket.on("notifications", (notification) => {
+    console.log(notification)
     $("#notifications").append(`<small class="text-muted">${notification.description}</small>`);
   });
 

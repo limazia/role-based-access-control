@@ -80,9 +80,9 @@ io.on("connection", (socket) => {
     const { user } = addUser(socket.id, name, room);
 
     socket.join(user.room);
-    socket.in(room).emit("notifications", { description: `${user.name} entrou na sala.` });
-  
-    io.in(room).emit("users", getUsers(room));
+    
+    io.to(user.room).emit("notifications", { description: `${user.name} entrou na sala.` });
+    io.to(user.room).emit("users", getUsers(room));
   });
 
   socket.on("sendMessage", (message) => {
@@ -95,10 +95,11 @@ io.on("connection", (socket) => {
   });
  
   socket.on("disconnect", () => {
+    console.log("user disconnect")
     const user = deleteUser(socket.id);
     if (user) {
-      io.in(user.room).emit("notification", { description: `${user.name} saiu da sala.` });
-      io.in(user.room).emit("users", getUsers(user.room));
+      io.to(user.room).emit("notification", { description: `${user.name} saiu da sala.` });
+      io.to(user.room).emit("users", getUsers(user.room));
     }
   });
 });
