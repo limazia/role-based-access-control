@@ -7,22 +7,19 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const flash = require("connect-flash");
+const moment = require("moment");
 
 const app = express();
-
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
+
+moment.locale("pt-br");
 
 const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
 const { AppConfig, AuthConfig } = require("./config");
-const {
-  addUser,
-  removeUser,
-  getUser,
-  getUsersInRoom,
-} = require("./helpers/user.helper");
+const { addUser, getUser, deleteUser, getUsers } = require("./helpers/socket.helper");
 
 app.set("view engine", "ejs");
 app.set("views", [
@@ -58,8 +55,13 @@ app.use(function(req, res, next){
     createdAt: "2022-01-13 22:12:35",
   };
 
-  req.session.user = serializedUser;
+  //req.session.user = serializedUser;
 
+  next();
+});
+app.use((req, res, next) => {
+  req.io = io;
+ 
   next();
 });
 app.use(cors());
@@ -73,7 +75,33 @@ app.use((err, req, res, next) => {
   handleError(err, res);
 });
 
+io.on("connection", (socket) => {
+  socket.on("joinRoom", ({ name, room }) => {
+    const { user } = addUser(socket.id, name, room);
+
+    socket.join(user.room);
+    socket.in(room).emit("notifications", { description: `${user.name} entrou na sala.` });
+  
+    io.in(room).emit("users", getUsers(room));
+  });
+
+  socket.on("sendMessage", (message) => {
+    const user = getUser(socket.id);
+
+    io.in(user.room).emit("message", {
+      username: user.name,
+      message
+    });
+  });
  
+  socket.on("disconnect", () => {
+    const user = deleteUser(socket.id);
+    if (user) {
+      io.in(user.room).emit("notification", { description: `${user.name} saiu da sala.` });
+      io.in(user.room).emit("users", getUsers(user.room));
+    }
+  });
+});
 
 app.locals = AppConfig.locals;
 

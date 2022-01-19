@@ -2,9 +2,9 @@
             <div class="invite-user-photo">
               <img src="<%= session.avatar %>" alt="<%= session.username %>">
             </div>
-            <div class="ms-2">
-              <h6 class="mb-0" id="name"><%= session.username %></h6>
-              <small class="text-muted <%= session.role_class %>">#<%= session.discriminator %></small>
+            <div class="user-profile">
+              <div class="username <%= session.role_class %>" id="username"><%= session.username %></div>
+              <div class="discriminator" id="discriminator">#<%= session.discriminator %></div>
             </div>
           </div>
           <div class="user-options">

@@ -172,6 +172,24 @@
       border: 1px solid #000;
     }
 
+    .user-profile {
+      .username {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 18px;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 0;
+      }
+
+      .discriminator {
+        text-overflow: ellipsis;
+        font-size: 11px;
+        color: #6c757d;
+      }
+    }
+
     .user-options {
       a {
         display: inline-flex;

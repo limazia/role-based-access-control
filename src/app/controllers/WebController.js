@@ -69,12 +69,20 @@ class WebController {
   async renderRoom(request, response, next) {
     try {
       const { room_name } = request.params;
+      const { username } = request.session.user;
       const room = await connection("rooms").orderBy("createdAt", "desc").where({ room_name });
 
       if (room.length == 0) {
         response.redirect("/home");
       }
-
+ 
+      /*
+      if (room_name) {
+        //request.io.to(user_socket).emit("match", { other_dev: targetDev });
+        request.io.emit("joinRoom", { name: username, room: room_name });
+      }
+      */
+      
       return response.status(200).render("Room", {
         title: `${room[0].room_title} (#${room[0].room_name})`,
         session: request.session.user || null,

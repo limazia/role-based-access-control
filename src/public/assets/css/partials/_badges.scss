@@ -34,46 +34,40 @@
 }
 
 .badge-role {
-  &.dev {
+  &.dev-ops {
     border: solid;
     border-image: url(https://www.w3schools.com/cssref/border.png) 30 stretch;
     background: url(https://media1.giphy.com/media/iSWDWGEBsIiQAHdLfN/giphy.gif),
       linear-gradient(1deg, #00000000 0%, #ef3e3e00 100%, #ffffff2b);
   }
 
-  &.coordenador {
+  &.dev {
     color: #ef8700;
-    font-weight: 700;
     background: url(https://i.imgur.com/ke1ROyD.gif) repeat;
   }
 
   &.co-administrador {
     color: purple;
-    font-weight: 700;
     background: url(https://cdn.discordapp.com/attachments/543468827657109506/620681777819811880/co_adm.gif) repeat;
   }
 
   &.administrador {
     color: red;
-    font-weight: 700;
     background: url(https://cdn.discordapp.com/attachments/543468827657109506/620681770786095118/adm.gif) repeat;
   }
 
   &.vip {
     color: #00bfff;
-    font-weight: 700;
     background: url(https://media.discordapp.net/attachments/468889886586568714/643789977762660352/blue.gif) repeat;
   }
 
   &.super-vip {
     color: #ffdf00;
-    font-weight: 700;
     background: url(https://media.discordapp.net/attachments/468889886586568714/643790950988251137/yellow.gif) repeat;
   }
 
   &.vip-extreme {
     color: #dc143c;
-    font-weight: 700;
     background: url(https://media.discordapp.net/attachments/468889886586568714/643791233390739466/red.gif) repeat;
   }
 }

@@ -1,50 +1,90 @@
 $(document).ready(function () {
-  // Conecta no servidor
   const socket = io("http://localhost:3000");
-  const roomsAvailables = $("#rooms_available > a");
-  const chatBody = $("#chat-body");
-  const username = $("#name");
+
+  const queryString = window.location.pathname;
+  const nameRoom = queryString.replace("/room/", "");
+
+  const username = $("#username");
+  const discriminator = $("#discriminator");
   const message = $("input[name=message]");
 
-  if (chatBody.length) {
+  const usersList = $(".users_list");
+
+  if (nameRoom != "/home" || nameRoom != "/" || nameRoom != "/login" || nameRoom != "/register") {
+    socket.emit("joinRoom", { name: username.text(), room: nameRoom });
+  }
+ 
+  function scrollSmoothToBottom() {
+    const chatBody = $("#chat-body");
+
+    if (chatBody.length) {
+      chatBody.scrollTop(chatBody.get(0).scrollHeight);
+    }
+
     chatBody.scrollTop(chatBody.get(0).scrollHeight);
   }
 
   function renderMessage(message) {
-    $(".messages").append(`<div class="answer right">
-    <div class="avatar">
-      <img src="/cdn/avatar1.jpg" alt="${message.author}">
-      <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
-        <i class="fas fa-user-crown"></i>
-      </div>
-    </div>
-    <div class="text">${message.message}</div>
-    <small class="time">11:38 AM</small>
-  </div>`);
+    //const momentTimestamp = moment.utc(message.timestamp);
+
+    if (true) {
+      $(".messages").append(`
+        <div class="answer right">
+          <div class="avatar">
+            <img src="/cdn/avatar1.jpg" alt="${message.author}">
+            <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
+              <i class="fas fa-user-crown"></i>
+            </div>
+          </div>
+          <div class="text">${message.message}</div>
+          <small class="time">11:38 AM</small>
+        </div>
+      `);
+    } else {
+      $(".messages").append(`
+        <div class="answer left">
+          <div class="avatar">
+            <img src="/cdn/avatar1.jpg" alt="${message.author}">
+            <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
+              <i class="fas fa-user-crown"></i>
+            </div>
+          </div>
+          <div class="name">${message.username}<small>${message.discriminator}</small></div>
+          <div class="text">${message.message}</div>
+          <small class="time">11:38 AM</small>
+        </div>
+      `);
+    }
   }
 
-  roomsAvailables.click(function () {
-    const selectedRoom = $(this).attr("id");
-
-    console.log(selectedRoom)
+  socket.on("users", (users) => {
+    for (user of users) {
+      usersList.append(`<small>${user.name}</small>`);
+    }
   });
- 
-  // Verifica quando é enviado uma mensagem
+
+  socket.on("notifications", (notification) => {
+    $("#notifications").append(`<small class="text-muted">${notification.description}</small>`);
+  });
+
   $("#chat").submit(function (event) {
     event.preventDefault();
 
-    if (message.length) {
+    if (message.length && message.val().trim()) {
+      const reg = /<(.|\n)*?>/g;
       const messageObject = {
-        username: username.val(),
+        username: $.trim(username.text()),
         message: message.val(),
       };
 
-      // Renderiza a mensagem
-      renderMessage(messageObject);
+      if (reg.test(message.val()) == true) {
+        alert("Sorry, that is not allowed!");
+      } else {
+        socket.emit("sendMessage", messageObject);
+        renderMessage(messageObject);
+      }
 
-      // Envia a mensagem pro socket no Back-End
-      socket.emit("chat message", messageObject);
-      chatBody.scrollTop(chatBody.get(0).scrollHeight);
+      scrollSmoothToBottom();
       message.val("");
     }
   });
