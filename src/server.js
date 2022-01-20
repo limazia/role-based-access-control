@@ -81,7 +81,7 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
     
-    io.to(user.room).emit("notifications", { description: `${user.name} entrou na sala.` });
+    io.to(user.room).emit("notifications", { description: `${user.name} entrou na sala` });
     io.to(user.room).emit("users", getUsers(room));
   });
 
@@ -98,7 +98,7 @@ io.on("connection", (socket) => {
     console.log("user disconnect")
     const user = deleteUser(socket.id);
     if (user) {
-      io.to(user.room).emit("notification", { description: `${user.name} saiu da sala.` });
+      io.to(user.room).emit("notification", { description: `${user.name} saiu da sala` });
       io.to(user.room).emit("users", getUsers(user.room));
     }
   });

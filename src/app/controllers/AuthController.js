@@ -64,7 +64,7 @@ class AuthController {
 
         request.session.user = serializedUser;
 
-        return response.redirect("/home");
+        return response.redirect("/");
       } else {
         request.flash("error", "Usuário não encontrado");
         return response.redirect("/login");

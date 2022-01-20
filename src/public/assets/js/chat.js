@@ -59,6 +59,7 @@ $(document).ready(function () {
 
   socket.on("users", (users) => {
     for (user of users) {
+      console.log(user.name)
       usersList.append(`<p class="mb-0"><small>${user.name}</small></p>`);
     }
   });

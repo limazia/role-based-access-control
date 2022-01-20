@@ -21,7 +21,6 @@ routes.post('/login', AuthController.userLogin);
 routes.post('/register', AuthController.userRegister);
 
 // Authenticated
-routes.get('/home', Authentication.session, WebController.renderHome);
 routes.get('/room/:room_name', Authentication.session, WebController.renderRoom);
 routes.get('/room', Authentication.session, WebController.renderPageNotFound);
 routes.get('/logout', Authentication.session, AuthController.userLogout);

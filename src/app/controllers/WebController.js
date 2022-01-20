@@ -9,9 +9,15 @@ moment.locale("pt-br");
 class WebController {
   async renderLanding(request, response, next) {
     try {
-      if (request.session.user) return response.redirect("/home");
-      
-      return response.status(200).render("Landing");
+      if (request.session.user) {
+        return response.status(200).render("Home", {
+          title: "Início",
+          session: request.session.user || null,
+          rooms: await getAllRooms(...["createdAt", "desc"]),
+        });
+      } else {
+        return response.status(200).render("Landing");
+      }
     } catch (error) {
       next(error);
     }
@@ -19,7 +25,7 @@ class WebController {
 
   async renderLogin(request, response, next) {
     try {
-      if (request.session.user) return response.redirect("/home");
+      if (request.session.user) return response.redirect("/");
 
       return response.status(200).render("Login", {
         title: "Iniciar sessão",
@@ -37,7 +43,7 @@ class WebController {
 
   async renderRegister(request, response, next) {
     try {
-      if (request.session.user) return response.redirect("/home");
+      if (request.session.user) return response.redirect("/");
         
       return response.status(200).render("Register", {
         title: "Criar conta",
@@ -54,18 +60,6 @@ class WebController {
     }
   }
 
-  async renderHome(request, response, next) {
-    try {      
-      return response.status(200).render("Home", {
-        title: "Início",
-        session: request.session.user || null,
-        rooms: await getAllRooms(...["createdAt", "desc"]),
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-  
   async renderRoom(request, response, next) {
     try {
       const { room_name } = request.params;
@@ -73,7 +67,7 @@ class WebController {
       const room = await connection("rooms").orderBy("createdAt", "desc").where({ room_name });
 
       if (room.length == 0) {
-        response.redirect("/home");
+        response.redirect("/");
       }
  
       /*
