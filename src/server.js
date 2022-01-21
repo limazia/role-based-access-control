@@ -88,8 +88,11 @@ io.on("connection", (socket) => {
   socket.on("sendMessage", (message) => {
     const user = getUser(socket.id);
 
-    io.in(user.room).emit("message", {
+    //io.to(user.room).emit("previousMessages", message);
+
+    io.to(user.room).emit("receivedMessage", {
       username: user.name,
+      discriminator: message.discriminator,
       message
     });
   });

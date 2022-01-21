@@ -401,7 +401,6 @@ button:active:focus:not(:disabled):not(.disabled) {
   height: 40px;
   margin-right: 10px;
   border-radius: 50%;
-  border: 1px solid #000;
 }
 .card-profile .card-footer .user-profile .username {
   white-space: nowrap;

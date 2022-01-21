@@ -6,7 +6,7 @@ exports.seed = function (knex) {
         {
           role_id: "342f72069b295",
           role_name: "Developer",
-          role_class: ".badge-role .dev",
+          role_class: "badge-role dev",
           role_permissions: "edit_name, delete_room",
         }
       ]);

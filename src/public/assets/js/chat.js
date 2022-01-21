@@ -26,8 +26,9 @@ $(document).ready(function () {
 
   function renderMessage(message) {
     //const momentTimestamp = moment.utc(message.timestamp);
+    console.log(message)
 
-    if (true) {
+    if (message.username == username.text()) {
       $(".messages").append(`
         <div class="answer right">
           <div class="avatar">
@@ -44,7 +45,7 @@ $(document).ready(function () {
       $(".messages").append(`
         <div class="answer left">
           <div class="avatar">
-            <img src="/cdn/avatar1.jpg" alt="${message.author}">
+            <img src="/cdn/avatar1.jpg" alt="${message.username}">
             <div class="icon-box" data-toggle="tooltip" data-placement="left" title="Administrador">
               <i class="fas fa-user-crown"></i>
             </div>
@@ -66,9 +67,21 @@ $(document).ready(function () {
 
   socket.on("notifications", (notification) => {
     console.log(notification)
-    $("#notifications").append(`<small class="text-muted">${notification.description}</small>`);
+    $("#notifications").append(`<p class="mb-0"><small class="text-muted">${notification.description}</small></p>`);
   });
 
+  /*
+  socket.on("previousMessages", function (messages) {
+    for (message of messages) {
+      renderMessage(message);
+    }
+  });
+ */
+
+  socket.on("receivedMessage", function (message) {
+    renderMessage(message);
+  });
+ 
   $("#chat").submit(function (event) {
     event.preventDefault();
 
@@ -76,6 +89,7 @@ $(document).ready(function () {
       const reg = /<(.|\n)*?>/g;
       const messageObject = {
         username: $.trim(username.text()),
+        discriminator: $.trim(discriminator.text()),
         message: message.val(),
       };
 

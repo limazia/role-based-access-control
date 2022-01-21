@@ -3,7 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
-const { getRolePermission } = require("../../helpers/chat.helper");
+const { getAvatar, getRolePermission } = require("../../helpers/chat.helper");
 
 moment.locale("pt-br");
 
@@ -54,7 +54,7 @@ class AuthController {
           username,
           email,
           discriminator,
-          avatar,
+          avatar: getAvatar(avatar),
           role,
           role_class,
           role_permissions: getRolePermission(role_permissions),
@@ -81,6 +81,7 @@ class AuthController {
       const salt = bcrypt.genSaltSync(10);
       const passwordCrypt = bcrypt.hashSync(password, salt);
       const id = cryptoRandomString({ length: 15 });
+      const discriminator = cryptoRandomString({ length: 5, type: "numeric" });
 
       request.flash("filled_username", username);
       request.flash("filled_email", email);
@@ -117,11 +118,11 @@ class AuthController {
         username,
         email,
         password: passwordCrypt,
+        discriminator
       });
 
       await trx("users_details").insert({
         user_id: id,
-        permissions: "[]",
       });
 
       await trx.commit();

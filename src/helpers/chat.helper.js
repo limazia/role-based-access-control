@@ -4,6 +4,10 @@ const getPhoto = (row) => {
   return row !== null ? `${AppConfig.locals.CDN_URL}/${row}` : AppConfig.locals.ROOM_PHOTO_DEFAULT;
 }
 
+const getAvatar = (row) => {
+  return row !== null ? `${AppConfig.locals.CDN_URL}/${row}` : AppConfig.locals.USER_PHOTO_DEFAULT;
+}
+
 const getRole = (row) => {
   return null;
 }
@@ -16,6 +20,7 @@ const getRolePermission = (permissions) => {
 
 module.exports = {
   getPhoto,
+  getAvatar,
   getRole,
   getRolePermission,
 };
