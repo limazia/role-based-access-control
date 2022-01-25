@@ -7,7 +7,7 @@ const { getAllRooms } = require("../../helpers/while.helper");
 moment.locale("pt-br");
 
 class WebController {
-  async renderLanding(request, response, next) {
+  async renderHome(request, response, next) {
     try {
       if (request.session.user) {
         return response.status(200).render("Home", {

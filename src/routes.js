@@ -11,7 +11,7 @@ const FakerController = require("./app/controllers/FakerController");
 const Authentication = require("./app/middlewares/Authentication");
 
 // Main
-routes.get('/', WebController.renderLanding);
+routes.get('/', WebController.renderHome);
 routes.get('/login', WebController.renderLogin);
 routes.get('/register', WebController.renderRegister);
 //routes.get('*', WebController.renderPageNotFound);
