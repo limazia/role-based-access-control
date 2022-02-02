@@ -20,7 +20,7 @@ routes.post('/login', AuthController.userLogin);
 routes.post('/register', AuthController.userRegister);
 
 // Authenticated
-routes.get('/admin', [Authentication.session, Authentication.permission], WebController.renderPageNotFound);
+routes.get('/admin', [Authentication.session, Authentication.permission], WebController.renderAdmin);
 routes.get('/logout', Authentication.session, AuthController.userLogout);
 
 // API

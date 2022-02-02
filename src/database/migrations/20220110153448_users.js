@@ -4,8 +4,9 @@ exports.up = function (knex) {
     table.string("username").notNullable();
     table.string("email").notNullable();
     table.string("password").notNullable();
-    table.string("role");
-
+    table.string("role").defaultTo("oi");
+    table.enu("type", ["basic", "supervisor", "admin"]).defaultTo("basic").notNullable();
+ 
     table.timestamp("updateAt").defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
     table.timestamp("createdAt").defaultTo(knex.raw('CURRENT_TIMESTAMP'));
   });

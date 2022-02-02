@@ -22,6 +22,19 @@ class WebController {
     }
   }
 
+  async renderAdmin(request, response, next) {
+    try {
+      if (request.session.user) return response.redirect("/");
+
+      return response.status(200).render("Admin", {
+        title: "Painel Administrativo",
+        session: request.session.user || null,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async renderRegister(request, response, next) {
     try {
       if (request.session.user) return response.redirect("/");

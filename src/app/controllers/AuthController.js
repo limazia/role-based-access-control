@@ -111,7 +111,7 @@ class AuthController {
       });
 
       request.flash("success", "Conta criada com sucesso!");
-      return response.redirect("/login");
+      return response.redirect("/");
     } catch (err) {
       next(err);
     }

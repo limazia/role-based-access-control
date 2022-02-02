@@ -1,0 +1,57 @@
+.navbar {
+  padding: 0px;
+}
+
+.navbar-main {
+  padding-top: 30px;
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 700;
+    color: #000;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus:not(:disabled):not(.disabled) {
+      color: #000;
+    }
+
+    img {
+      display: inline;
+      max-width: 100%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+
+    .nav-item {
+      font-size: 14px;
+      font-weight: 600;
+
+      .btn {
+        margin-left: 20px;
+      }
+
+      .nav-link {
+        color: #000000;
+        padding: 20px;
+        transition: 0.5s ease;
+
+        &:hover {
+          color: #8f8f8f;
+        }
+      }
+    }
+  }
+}
