@@ -3,7 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
-const { getAvatar, getRolePermission } = require("../../helpers/chat.helper");
+const PrivilegedUser = require("../class/PrivilegedUser");
 
 moment.locale("pt-br");
 
@@ -14,24 +14,23 @@ class AuthController {
       const user = await connection("users")
         .select("*")
         .where({ email })
-        .leftJoin("users_details", "users_details.user_id", "=", "users.id")
-        .leftJoin("roles", "roles.role_id", "=", "users_details.role");
+        .leftJoin("roles", "roles.role_id", "=", "users.role");
       request.flash("filled_email", email);
 
       if (!email) {
         request.flash("error", "Digite um e-mail");
-        return response.redirect("/login");
+        return response.redirect("/");
       }
 
       if (!password) {
         request.flash("error", "Digite uma senha");
-        return response.redirect("/login");
+        return response.redirect("/");
       }
 
       if (user.length >= 1) {
         if (!(await bcrypt.compare(password, user[0].password))) {
           request.flash("error", "Senha invalida");
-          return response.redirect("/login");
+          return response.redirect("/");
         }
 
         user[0].password = undefined;
@@ -40,24 +39,18 @@ class AuthController {
           id,
           username,
           email,
-          discriminator,
-          avatar,
           role,
-          role_class,
-          role_permissions,
           updateAt,
           createdAt
         } = user[0];
+
+        await PrivilegedUser.getByUsername(username)
 
         const serializedUser = {
           id,
           username,
           email,
-          discriminator,
-          avatar: getAvatar(avatar),
           role,
-          role_class,
-          role_permissions: getRolePermission(role_permissions),
           updateAt: moment(updateAt).format("LL"),
           createdAt: moment(createdAt).format("LL"),
         };
@@ -67,7 +60,7 @@ class AuthController {
         return response.redirect("/");
       } else {
         request.flash("error", "Usuário não encontrado");
-        return response.redirect("/login");
+        return response.redirect("/");
       }
     } catch (err) {
       next(err);
@@ -81,7 +74,6 @@ class AuthController {
       const salt = bcrypt.genSaltSync(10);
       const passwordCrypt = bcrypt.hashSync(password, salt);
       const id = cryptoRandomString({ length: 15 });
-      const discriminator = cryptoRandomString({ length: 5, type: "numeric" });
 
       request.flash("filled_username", username);
       request.flash("filled_email", email);
@@ -111,21 +103,12 @@ class AuthController {
         return response.redirect("/register");
       }
 
-      const trx = await connection.transaction();
-
-      await trx("users").insert({
+      await connection("users").insert({
         id,
         username,
         email,
         password: passwordCrypt,
-        discriminator
       });
-
-      await trx("users_details").insert({
-        user_id: id,
-      });
-
-      await trx.commit();
 
       request.flash("success", "Conta criada com sucesso!");
       return response.redirect("/login");

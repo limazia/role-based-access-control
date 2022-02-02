@@ -1,32 +1,11 @@
 <%- include('partials/header.ejs') %>
-  <div class="container-fluid chat-box">
-    <div class="row h-100 clearmp">
-      <div class="col-md-3 clearmp">
-        <div class="card card-profile">
-          <div class="card-header">
-            <img src="/assets/images/logo-icon.png" class="img-fluid mr-1" />
-            <h3 class="logo-title">
-              <%= PAGE_TITLE %>
-            </h3>
-          </div>
-          <div class="card-body mt-4">
-            <%- include('layouts/rooms.ejs') %> 
-          </div>
-          <div class="card-footer">
-            <%- include('layouts/profile.ejs') %> 
-          </div>
-        </div>
-      </div>
-      <div class="col-md-9 clearmp">
-        <div class="card card-chat-landing">
-          <div class="card-body">
-            <div class="welcome">
-              <img src="assets/images/bg-landing-chat.svg" onload="SVGInject(this)" class="img-fluid">
-              <span>Bem-vindo ao <b class="logo"><%= PAGE_TITLE %></b>.</span>
-            </div>
-          </div>
-        </div>
+<%- include('layouts/navbar.ejs') %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        ola
       </div>
     </div>
   </div>
+<%- include('layouts/footerbar.ejs') %>
 <%- include('partials/footer.ejs') %>

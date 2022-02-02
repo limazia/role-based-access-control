@@ -1,5 +1,5 @@
 {
-  "name": "blab",
+  "name": "role-based-access-control",
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
@@ -28,10 +28,7 @@
     "express-session": "^1.17.2",
     "knex": "^0.95.14",
     "moment": "^2.29.1",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.4",
-    "mysql": "^2.18.1",
-    "socket.io": "^4.4.1"
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"

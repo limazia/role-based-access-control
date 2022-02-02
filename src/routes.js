@@ -12,7 +12,6 @@ const Authentication = require("./app/middlewares/Authentication");
 
 // Main
 routes.get('/', WebController.renderHome);
-routes.get('/login', WebController.renderLogin);
 routes.get('/register', WebController.renderRegister);
 //routes.get('*', WebController.renderPageNotFound);
 
@@ -21,8 +20,7 @@ routes.post('/login', AuthController.userLogin);
 routes.post('/register', AuthController.userRegister);
 
 // Authenticated
-routes.get('/room/:room_name', Authentication.session, WebController.renderRoom);
-routes.get('/room', Authentication.session, WebController.renderPageNotFound);
+routes.get('/admin', [Authentication.session, Authentication.permission], WebController.renderPageNotFound);
 routes.get('/logout', Authentication.session, AuthController.userLogout);
 
 // API

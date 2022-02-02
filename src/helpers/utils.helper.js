@@ -7,57 +7,42 @@ const env = (key, defaultValue) => {
   }
 
   return value;
-}
+};
 
-const capitalize = (string) => {
-  return string
-    .replace(/(_|-)/g, " ")
-    .trim()
-    .replace(/\w\S*/g, function (str) {
-      return str.charAt(0).toUpperCase() + str.substr(1);
-    })
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/([A-Z])([A-Z][a-z])/g, "$1 $2");
-}
-
-const sorted = (data, dir) => {
-  return data.sort((a, b) => {
-    const aStat = fs.statSync(`${dir}/${a}`);
-    const bStat = fs.statSync(`${dir}/${b}`);
-
-    return (new Date(bStat.birthtime).getTime() - new Date(aStat.birthtime).getTime());
-  });
-}
-
-const range = (begin, end, interval = 1) => {
-  for (let i = begin; i < end; i += interval) {
-    return i;
+const isset = (accessor) => {
+  try {
+    return typeof accessor() !== "undefined";
+  } catch (e) {
+    return false;
   }
-}
+};
 
-const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
- 
-const isArray = (data) => {
-  return Array.isArray(data)
-}
+const empty = (accessor) => {
+  if (typeof data == "number" || typeof data == "boolean") {
+    return false;
+  }
 
-const isObject = (data) => {
-  return typeof data === "object" && !isArray(data)
-}
+  if (typeof data == "undefined" || data === null) {
+    return true;
+  }
 
-const isBycryptedHash = (string) => {
-  return /^\$2[ayb]\$[0-9]{2}\$[A-Za-z0-9./]{53}$/.test(string)
-}
+  if (typeof data.length != "undefined") {
+    return data.length == 0;
+  }
+
+  let count = 0;
+
+  for (let i in data) {
+    if (data.hasOwnProperty(i)) {
+      count++;
+    }
+  }
+
+  return count == 0;
+};
 
 module.exports = {
   env,
-  capitalize,
-  sorted,
-  range,
-  random,
-  isArray,
-  isObject,
-  isBycryptedHash
+  isset,
+  empty,
 };
