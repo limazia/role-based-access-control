@@ -4,19 +4,19 @@ exports.seed = function (knex) {
     .then(function () {
       return knex("roles_permissions").insert([
         {
-          permission_id: "54ff36245acfd",
+          permission_id: "ff3b5d7cc9239",
           permission_description: "addUser" 
         },
         {
-          permission_id: "54ff36245acfd",
+          permission_id: "59fb0fbd279ff",
           permission_description: "editUser" 
         },
         {
-          permission_id: "51a76feff6687",
+          permission_id: "a01bfd0c94c6d",
           permission_description: "deleteUser" 
         },
         {
-          permission_id: "17b8faf587cfc",
+          permission_id: "e3e17d2858b7d",
           permission_description: "deleteUser" 
         },
       ]);

@@ -6,7 +6,7 @@ exports.seed = function (knex) {
         {
           role_id: "342f72069b295",
           role_name: "Developer",
-          role_permission: "649ebe0468ac6",
+          role_permission: "ff3b5d7cc9239",
         }
       ]);
     });

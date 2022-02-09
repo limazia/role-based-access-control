@@ -15,10 +15,12 @@
                 </div>
                 <p class="text-muted mb-4 text-center">Inicie uma sessão para continuar.</p>
                 <form method="POST" action="/login">
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-envelope"></i>
                     <input type="email" name="email" placeholder="E-mail" class="form-control" <%= (filled) ? `value=${filled.email}` : "" %>>
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-lock"></i>
                     <input type="password" name="password" placeholder="Senha" class="form-control">
                   </div>
                   <%- include('components/alert_auth.ejs') %>

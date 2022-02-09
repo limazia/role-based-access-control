@@ -1,0 +1,96 @@
+.form-control {
+  height: 60px;
+  text-indent: 10px;
+  background: #e9ebef;
+  color: #637089;
+  border: none;
+  max-width: 100%;
+  border-radius: 10px;
+
+  &:focus {
+    background: #e9ebef;
+    color: #637089;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #637089;
+    font-size: 0.9rem;
+  }
+}
+
+.wicon {
+  position: relative;
+
+  input {
+    text-indent: 30px;
+    color: #aeb0b0;
+    border-radius: 10px;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      font-size: 0.9rem;
+    }
+  }
+
+  .fa,
+  .fas,
+  .far,
+  .fal,
+  .fad,
+  .fab {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+    color: #aeb0b0;
+  }
+}
+
+.btn-label {
+  position: relative;
+  padding-left: 44px;
+
+  .label-icon {
+    position: absolute;
+    width: 32px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+.link-login,
+.link-register {
+  margin-top: 20px;
+  text-align: center;
+
+  a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: 0.5s ease;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus:not(:disabled):not(.disabled) {
+      text-decoration: none;
+      color: #868e96;
+    }
+  }
+}

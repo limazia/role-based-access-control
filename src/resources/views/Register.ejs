@@ -9,28 +9,30 @@
               <div class="col-lg-10 col-xl-7 mx-auto">
                 <div class="display-4 box-logo">
                   <img src="assets/images/logo-icon.png" class="img-fluid mr-1" />
-                  <h3 class="logo-title">
-                    <%= PAGE_TITLE %>
-                  </h3>
+                  <h3 class="logo-title"><%= PAGE_TITLE %></h3>
                 </div>
                 <p class="text-muted mb-4 text-center">Crie uma conta para explorar ao máximo.</p>
                 <form method="POST" action="/register">
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-user"></i>
                     <input type="text" name="username" placeholder="Nome de usuário" class="form-control" <%= (filled) ? `value=${filled.username}` : "" %>>
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-envelope"></i>
                     <input type="email" name="email" placeholder="E-mail" class="form-control" <%= (filled) ? `value=${filled.email}` : "" %>>
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-lock"></i>
                     <input type="password" name="password" placeholder="Senha" class="form-control">
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-3 wicon">
+                    <i class="fas fa-lock"></i>
                     <input type="password"name="confirmpassword" placeholder="Confirme a senha" class="form-control">
                   </div>
                   <%- include('components/alert_auth.ejs') %>
                   <button type="submit" class="btn btn-sign btn-block">Finalizar</button>
                   <div class="link-login">
-                    <p>Já tem conta? <a href="/login">Faça login</a></p>
+                    <p>Já tem conta? <a href="/">Faça login</a></p>
                   </div>
                 </form>
               </div>
