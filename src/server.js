@@ -30,13 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(flash());
 app.use(express.static(path.join(__dirname, "/public")));
-app.use("/cdn", express.static(path.resolve(__dirname, '../', "cdn")));
+app.use((req, res, next) => {
+  updateSession(req, res, next); 
+});
 app.use(routes); 
 app.use((err, req, res, next) => {
   handleError(err, res);
-});
-app.use((req, res, next) => {
-  updateSession(req, res, next);
 });
 
 app.locals = AppConfig.locals;

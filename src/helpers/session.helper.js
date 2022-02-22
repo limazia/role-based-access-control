@@ -26,23 +26,25 @@ const permission = (roles = []) => {
 };
 
 const updateSession = async (request, response, next) => {
-  const session = request.session.user;
-  const user = await getByEmail(session.email);
+    const session = request.session.user;
+    const user = await getByEmail(session ? session.email : null);
 
-  const timeSession = moment(session.updateAt).format("LTS");
-  const timeUser = moment(user.updateAt).format("LTS");
+    const timeSession = moment(session ? session.updateAt : null).format("LTS");
+    const timeUser = moment(session ? user.updateAt : null).format("LTS");
 
-  if (timeSession !== timeUser) {
-    request.session.reload(function (err) {
-      request.session.user = user;
-      
-      request.session.save(function (err) {
-        return next();
+    if (timeSession !== timeUser) {
+      request.session.reload(function (err) {
+        request.session.user = user;
+        
+        request.session.save(function (err) {
+          return next();
+        });
       });
-    });
-  } else {
-    return next();
-  }
+    } else {
+      return next();
+    }
+ 
+ 
 };
 
 module.exports = {
