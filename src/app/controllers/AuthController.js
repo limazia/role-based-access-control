@@ -3,7 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
-const PrivilegedUser = require("../class/PrivilegedUser");
+const { getByEmail } = require("../class/PrivilegedUser");
 
 moment.locale("pt-br");
 
@@ -11,10 +11,7 @@ class AuthController {
   async userLogin(request, response, next) {
     try {
       const { email, password } = request.body;
-      const user = await connection("users")
-        .select("*")
-        .where({ email })
-        .leftJoin("roles", "roles.role_id", "=", "users.role");
+      const user = await connection("users").select("*").where({ email })
       request.flash("filled_email", email);
 
       if (!email) {
@@ -35,27 +32,7 @@ class AuthController {
 
         user[0].password = undefined;
 
-        const {
-          id,
-          username,
-          email,
-          role,
-          updateAt,
-          createdAt
-        } = user[0];
-
-        await PrivilegedUser.getByUsername(username)
-
-        const serializedUser = {
-          id,
-          username,
-          email,
-          role,
-          updateAt: moment(updateAt).format("LL"),
-          createdAt: moment(createdAt).format("LL"),
-        };
-
-        request.session.user = serializedUser;
+        request.session.user = await getByEmail(email);
 
         return response.redirect("/");
       } else {

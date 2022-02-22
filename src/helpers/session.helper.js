@@ -1,45 +1,51 @@
-const cookieParser = require("cookie-parser");
+const moment = require("moment");
+const { constantError } = require("../app/constants/error");
+const { getByEmail } = require("../app/class/PrivilegedUser");
 
-export async function serializeSession(request, user) {
-  request.session.user = user;
-  request.user = user;
+moment.locale("pt-br");
 
-  const session = sessionRepository.create({
-    sessionId: request.sessionID,
-    expiresAt: request.session.cookie.expires,
-    data: JSON.stringify(user),
-  });
+const permission = (roles = []) => {
+  return (request, response, next) => {
+    const session = request.session.user;
+    const userPermissions = session.permissions.split(",");
 
-  return sessionRepository.save(session);
-}
+    if (typeof roles === "string") {
+      roles = [roles];
+    }
 
-export async function deserializeSession(request, response, next) {
-  const { DISCORD_OAUTH2_SESSION_ID } = request.cookies;
-  if (!DISCORD_OAUTH2_SESSION_ID) return next();
+    try {
+      if (roles.length && !userPermissions.some((permission) => roles.indexOf(permission) >= 0)) {
+        return response.redirect("/");
+      }
 
-  const sessionId = cookieParser
-    .signedCookie(DISCORD_OAUTH2_SESSION_ID, 'ASDSAJHDGASJDHASDABSDHJASGDAJHD')
-    .toString();
-  const sessionDB = await sessionRepository.findOne({
-    sessionId: sessionId,
-  });
+      return next();
+    } catch (err) {
+      return request.flash("error", constantError.MISSING_PERMISSIONS);
+    }
+  };
+};
 
-  if (!sessionDB) {
-    console.log('No Session');
+const updateSession = async (request, response, next) => {
+  const session = request.session.user;
+  const user = await getByEmail(session.email);
+
+  const timeSession = moment(session.updateAt).format("LTS");
+  const timeUser = moment(user.updateAt).format("LTS");
+
+  if (timeSession !== timeUser) {
+    request.session.reload(function (err) {
+      request.session.user = user;
+      
+      request.session.save(function (err) {
+        return next();
+      });
+    });
+  } else {
     return next();
   }
+};
 
-  const currentTime = new Date();
-
-  if (sessionDB.expiresAt < currentTime) {
-    console.log('Session Expired');
-    await sessionRepository.delete(sessionDB);
-    console.log('Session Deleted');
-  } else {
-    console.log('Session Not Expired');
-    const data = JSON.parse(sessionDB.data);
-    request.user = data;
-  }
-
-  next();
-}
+module.exports = {
+  permission,
+  updateSession,
+};

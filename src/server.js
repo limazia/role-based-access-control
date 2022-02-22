@@ -12,39 +12,16 @@ const app = express();
 const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
+const { updateSession } = require("./helpers/session.helper");
 const { AppConfig, AuthConfig } = require("./config");
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/resources/views");
-
+ 
 app.use(cookieParser());
-app.use(
-  session({
-    secret: AuthConfig.secretCookie,
-    name: AuthConfig.name,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: AuthConfig.expiresIn,
-    },
-  })
-);
+app.use(session(AuthConfig.sessionAuth));
 app.use(function(req, res, next){
   res.locals.user = req.session.user;
-
-  const serializedUser = {
-    id: "cd4244141da8325",
-    username: "Lima",
-    email: "limadeacacio@gmail.com",
-    discriminator: "2406",
-    avatar: "http://localhost:3000/cdn/avatar1.jpg",
-    role_class: "badge-role dev",
-    role_permissions: "edit_name, delete_room",
-    updateAt: "2022-01-16 15:36:21",
-    createdAt: "2022-01-13 22:12:35",
-  };
-
-  //req.session.user = serializedUser;
 
   next();
 });
@@ -57,6 +34,9 @@ app.use("/cdn", express.static(path.resolve(__dirname, '../', "cdn")));
 app.use(routes); 
 app.use((err, req, res, next) => {
   handleError(err, res);
+});
+app.use((req, res, next) => {
+  updateSession(req, res, next);
 });
 
 app.locals = AppConfig.locals;

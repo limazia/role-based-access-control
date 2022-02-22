@@ -6,7 +6,7 @@ class WebController {
           title: "Início",
           session: request.session.user || null,
         });
-      } else {
+      } else {        
         return response.status(200).render("Login", {
           title: "Iniciar sessão",
           session: request.session.user || null,
@@ -24,8 +24,6 @@ class WebController {
 
   async renderAdmin(request, response, next) {
     try {
-      if (request.session.user) return response.redirect("/");
-
       return response.status(200).render("Admin", {
         title: "Painel Administrativo",
         session: request.session.user || null,

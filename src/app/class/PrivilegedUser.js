@@ -1,43 +1,34 @@
 const connection = require("../../database/connection");
-const Role = require("./Role");
 
 class PrivilegedUser {
   _roles;
- 
-  async getByUsername(username) {
-    const result = await connection("users").where({ username });
 
-    if (result.length > 0) {
-      let privUser = {
-        id: result[0]["id"],
-        username,
-        email: result[0]["email"],
-        password: result[0]["password"],
-        role: result[0]["role"]
-      };
+  async getSession() {
+    return (request, response, next) => {
+      const session = request.session.user;
 
-      this.initRoles();
-
-      return privUser;
-    } else {
-      return false;
-    }
+      return session ? session : null;
+    };
   }
 
-  async initRoles() {
-    this._roles = [];
+  async getByEmail(email) {
+    //const user = await connection.raw('SELECT * FROM users WHERE email = :email', { email });
+    const user = await connection("users").select("*").where({ email });
 
-    //$sql = "SELECT t1.role_id, t2.role_name FROM user_role as t1 JOIN roles as t2 ON t1.role_id = t2.role_id WHERE t1.user_id = :user_id";
+    if (user.length >= 1) {
+      const { id, username, permissions, updateAt, createdAt } = user[0];
 
-    //$sql2 = connection.raw('SELECT t1.role_id, t2.role_name FROM user_role as t1 JOIN roles as t2 ON t1.role_id = t2.role_id WHERE t1.user_id = :user_id');
+      const privUser = {
+        id,
+        username,
+        email,
+        permissions,
+        updateAt,
+        createdAt,
+      };
 
-    const role = await connection("roles")
-      .select("role_id", "role_name")
-      .join("users", "users.role", "=", "roles.role_id");
-    
-    role.map(async (row) => {
-      return this._roles[row["role_name"]] = await Role.getRolePerms(row["role_id"]);
-    });
+      return privUser;
+    }
   }
 
   hasPrivilege(perm) {

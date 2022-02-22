@@ -45,8 +45,15 @@
   .fab {
     position: absolute;
     top: 20px;
-    left: 16px;
     color: #aeb0b0;
+
+    &.right {
+      right: 16px;
+    }
+
+    &.left {
+      left: 16px;
+    }
   }
 }
 

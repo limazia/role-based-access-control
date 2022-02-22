@@ -8,7 +8,6 @@ exports.seed = function (knex) {
           username: "Lima",
           email: "limadeacacio@gmail.com",
           password: "$2b$10$i.afTQ/EvQvlXdoaqcvWc.qi2qRVi7cUXN9PFIOr535U9XU6ss33C",
-          role: "342f72069b295"
         }
       ]);
     });

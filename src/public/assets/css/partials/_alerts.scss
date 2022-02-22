@@ -1,0 +1,18 @@
+.alert {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.alert-dismissible {
+  .close {
+    top: initial;
+    transition: 0.5s ease;
+    color: inherit;
+  
+    &:hover {
+      color: #262626;
+    }
+  }
+}
