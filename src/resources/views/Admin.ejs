@@ -1,6 +1,17 @@
 <%- include('partials/header.ejs') %>
-<%- include('layouts/sidebar.ejs') %> 
-  <div class="height-100 bg-light">
-    <h4>Main Components</h4>
+<%- include('layouts/sidebar_admin.ejs') %>
+  <div class="content-container">
+    <%- include('layouts/navbar_admin.ejs') %>
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Navbar example</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It
+          includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+      </div>
+    </div>
   </div>
 <%- include('partials/footer.ejs') %>
