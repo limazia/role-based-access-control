@@ -11,18 +11,20 @@ class PrivilegedUser {
     };
   }
 
-  async getByEmail(email) {
+  async createSessionByEmail(email) {
     //const user = await connection.raw('SELECT * FROM users WHERE email = :email', { email });
     const user = await connection("users").select("*").where({ email });
 
     if (user.length >= 1) {
       const { id, username, permissions, updateAt, createdAt } = user[0];
 
+      const permissionsToArray = permissions.split(",").map(permission => permission.trim());
+
       const privUser = {
         id,
         username,
         email,
-        permissions,
+        permissions: permissionsToArray,
         updateAt,
         createdAt,
       };

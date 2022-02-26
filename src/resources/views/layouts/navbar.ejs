@@ -17,7 +17,7 @@
                 <span class="username"><%= session.username %></span>
               </a>
               <div class="dropdown-menu">
-                <% if(session.permissions.split(",").some((permission) => ["login_admin"].indexOf(permission) >= 0)){ %>
+                <% if(session.permissions.some((permission) => ["login_admin"].indexOf(permission) >= 0)){ %>
                   <a class="dropdown-item" href="/admin"><i class="far fa-hammer"></i> Painel Administrativo</a>
                 <% } %>
                 <a class="dropdown-item" href="/"><i class="far fa-cog"></i> Configurações</a>

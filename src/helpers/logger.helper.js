@@ -6,7 +6,7 @@ class Logger {
   }
 
   clear() {
-    this.logs = [];
+    this.logs = []; 
   }
 
   show() {

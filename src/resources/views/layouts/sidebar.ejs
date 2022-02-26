@@ -8,11 +8,13 @@
           <a href="#" class="nav_link active"> 
             <i class="far fa-border-all nav_icon"></i> 
             <span class="nav_name">Dashboard</span> 
-          </a> 
-          <a href="#" class="nav_link"> 
-            <i class="far fa-user nav_icon"></i>
-            <span class="nav_name">Users</span> 
-          </a> 
+          </a>
+          <% if(session.permissions.some((permission) => ["view_users"].indexOf(permission) >= 0)){ %>
+            <a href="#" class="nav_link"> 
+              <i class="far fa-user nav_icon"></i>
+              <span class="nav_name">Users</span> 
+            </a> 
+          <% } %>
           <a href="#" class="nav_link"> 
             <i class="far fa-comment-alt-lines nav_icon"></i>
             <span class="nav_name">Messages</span> 

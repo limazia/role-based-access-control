@@ -3,7 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
-const { getByEmail } = require("../class/PrivilegedUser");
+const { createSessionByEmail } = require("../class/PrivilegedUser");
 
 moment.locale("pt-br");
 
@@ -32,7 +32,7 @@ class AuthController {
 
         user[0].password = undefined;
 
-        request.session.user = await getByEmail(email);
+        request.session.user = await createSessionByEmail(email);
 
         return response.redirect("/");
       } else {
