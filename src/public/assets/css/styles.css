@@ -186,10 +186,10 @@ button:active:focus:not(:disabled):not(.disabled) {
 }
 .navbar-admin .navbar-nav .profile {
   text-align: center;
+  margin-right: 20px;
 }
 .navbar-admin .navbar-nav .profile .avatar {
-  display: inline;
-  align-items: center;
+  margin: 0.6em;
   height: 36px;
   width: 36px;
   border-radius: 50%;
