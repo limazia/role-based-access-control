@@ -3,7 +3,7 @@ const cryptoRandomString = require("crypto-random-string");
 const moment = require("moment");
 
 const connection = require("../../database/connection");
-const { createSessionByEmail } = require("../class/PrivilegedUser");
+const { createSessionByEmail } = require("../class/SessionUser");
 
 moment.locale("pt-br");
 

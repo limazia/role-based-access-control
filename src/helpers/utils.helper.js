@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { constantError } = require("../app/constants/error");
 
 const env = (key, defaultValue) => {
   const value = process.env[key] || defaultValue;
@@ -9,40 +10,27 @@ const env = (key, defaultValue) => {
   return value;
 };
 
-const isset = (accessor) => {
-  try {
-    return typeof accessor() !== "undefined";
-  } catch (e) {
-    return false;
-  }
-};
+const permission = (roles = []) => {
+  return (request, response, next) => {
+    const { permissions } = request.session.user;
 
-const empty = (accessor) => {
-  if (typeof data == "number" || typeof data == "boolean") {
-    return false;
-  }
-
-  if (typeof data == "undefined" || data === null) {
-    return true;
-  }
-
-  if (typeof data.length != "undefined") {
-    return data.length == 0;
-  }
-
-  let count = 0;
-
-  for (let i in data) {
-    if (data.hasOwnProperty(i)) {
-      count++;
+    if (typeof roles === "string") {
+      roles = [roles];
     }
-  }
 
-  return count == 0;
+    try {
+      if (roles.length && !permissions.some((permission) => roles.indexOf(permission) >= 0)) {
+        return response.redirect("/");
+      }
+
+      return next();
+    } catch (err) {
+      return request.flash("error", constantError.MISSING_PERMISSIONS);
+    }
+  };
 };
 
 module.exports = {
   env,
-  isset,
-  empty,
+  permission
 };

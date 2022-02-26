@@ -1,46 +1,43 @@
-  <div class="sidebar-container">
-    <div class="sidebar-logo">
-      <a href="/">
-        <img src="/assets/images/logo-icon.png" class="img-fluid mr-2" />
-        <%= PAGE_TITLE %>
-      </a>
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <img src="/assets/images/logo-icon.png" class="img-fluid mr-2" />
+      <%= PAGE_TITLE %>
     </div>
-    <ul class="sidebar-navigation">
-      <li class="header">Geral</li>
+    <ul class="list-unstyled components">
       <li class="active">
-        <a href="#">
-          <i class="fas fa-th-large"></i> Dashboard
-        </a>
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <a href="#">Home 1</a>
+          </li>
+          <li>
+            <a href="#">Home 2</a>
+          </li>
+          <li>
+            <a href="#">Home 3</a>
+          </li>
+        </ul>
       </li>
-      <% if(session.permissions.some((permission) => ["login_admin"].indexOf(permission) >= 0)){ %>
-        <li>
-          <a href="#">
-            <i class="fas fa-users"></i> Usuários
-          </a>
-        </li>
-      <% } %>
-      <% if(session.permissions.some((permission) => ["view_teams"].indexOf(permission) >= 0)){ %>
-        <li>
-          <a href="#">
-            <i class="fas fa-flag"></i> Times
-          </a>
-        </li>
-      <% } %>
-      <li class="header">Contéudo</li>
-      <% if(session.permissions.some((permission) => ["view_alerts"].indexOf(permission) >= 0)){ %>
-        <li>
-          <a href="#">
-            <i class="fa fa-users" aria-hidden="true"></i> Alertas
-          </a>
-        </li>
-      <% } %>
-      <li class="header">Administração</li>
-      <% if(session.permissions.some((permission) => ["view_permissions"].indexOf(permission) >= 0)){ %>
-        <li>
-          <a href="#">
-            <i class="fas fa-user-friends"></i> Grupo de Permissões
-          </a>
-        </li>
-      <% } %>
+      <li>
+        <a href="#">About</a>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li>
+            <a href="#">Page 1</a>
+          </li>
+          <li>
+            <a href="#">Page 2</a>
+          </li>
+          <li>
+            <a href="#">Page 3</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Portfolio</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
     </ul>
-  </div>
+  </nav>

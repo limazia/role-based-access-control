@@ -96,6 +96,44 @@
   .dropdown-toggle {
     display: flex;
     align-items: center;
- 
+  }
+}
+
+.navbar-admin {
+  background-color: #2574a9;
+  padding-bottom: 30px;
+
+  .navbar-nav {
+    .nav-link {
+      color: #000;
+      transition: ease 0.5s;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:focus:not(:disabled):not(.disabled) {
+        color: #d6d6d6;
+      }
+    }
+
+    .profile {
+      text-align: center;
+
+      .avatar {
+        display: inline;
+        align-items: center;
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+      }
+
+      .username {
+        margin: 0 0.6em;
+      }
+  
+      .logout {
+        color: #f46a6a !important;
+      }
+    }
   }
 }

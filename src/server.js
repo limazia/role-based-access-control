@@ -12,7 +12,7 @@ const app = express();
 const routes = require("./routes");
 const { env } = require("./helpers/utils.helper");
 const { handleError } = require("./helpers/error.helper");
-const { updateSession } = require("./helpers/session.helper");
+const SessionUser = require("./app/class/SessionUser");
 const { AppConfig, AuthConfig } = require("./config");
 
 app.set("view engine", "ejs");
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(flash());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use((req, res, next) => {
-  updateSession(req, res, next); 
+  SessionUser.updateSession(req, res, next); 
 });
 app.use(routes); 
 app.use((err, req, res, next) => {

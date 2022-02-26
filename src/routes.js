@@ -4,7 +4,7 @@ require("express-group-routes");
 const routes = express.Router();
 
 // Helpers
-const { permission } = require("./helpers/session.helper");
+const { permission } = require("./helpers/utils.helper");
 
 // Controllers
 const WebController = require("./app/controllers/WebController");
